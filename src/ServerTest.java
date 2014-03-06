@@ -8,6 +8,7 @@ import static junit.framework.Assert.assertEquals;
 public class ServerTest {
     String getInitialReqLine = "GET /path/to/file/index.html HTTP/1.0";
     String postInitialReqLine = "POST /path/to/file/index.html HTTP/1.0";
+    String response = "HTTP/1.0 200 OK";
     @Test
     public void parsesGetRequestMethod(){
         String requestMethod = "GET";
@@ -32,5 +33,12 @@ public class ServerTest {
         assertEquals(version, Server.parseHTTPVersion(getInitialReqLine));
     }
 
+    @Test
+//    the first piece of the response should be the HTTP version - HTTP/1.0
+//    HTTP version + status code + english translation of status code
+    public void initialResponseLine(){
+        String response = "HTTP/1.0 200 OK";
+        assertEquals(response, Server.getResponseInitialLine());
+    }
 }
 

@@ -9,9 +9,16 @@ import java.net.Socket;
  * Created by elizabethengelman on 3/6/14.
  */
 public class Server {
+    private static String method;
+    private static String path;
+    private static String version;
+    private static String statusCode;
+    private static String reasonPhrase;
+
     public static void main (String[] args) throws IOException {
         //do i need to set a port number, or just assume it to be on port 80
         int portNumber = 5000;
+        String method;
         System.out.println("Server started");
         ServerSocket serverSocket = new ServerSocket(portNumber);
         Socket clientSocket = serverSocket.accept();
@@ -20,9 +27,13 @@ public class Server {
         try{
             while (true){
                 String request = input.readLine();
-                String response = "this is the response";
+                parseRequestMethod(request);
+                parsePath(request);
+                parseHTTPVersion(request);
+
                 System.out.println(request);
-                output.println(response);
+                output.println(getResponseInitialLine());
+
             }
         }
         catch (IOException e){
@@ -31,21 +42,32 @@ public class Server {
     }
 
     public static String parseRequestMethod(String initialRequestLine){
-        return parseInitialRequestLine(initialRequestLine, 0);
+        method = parseInitialRequestLine(initialRequestLine, 0);
+        return method;
     }
 
     public static String parsePath(String initialRequestLine){
-        return parseInitialRequestLine(initialRequestLine, 1);
+        path = parseInitialRequestLine(initialRequestLine, 1);
+        return path;
     }
 
     public static String parseHTTPVersion(String initialRequestLine){
-      return parseInitialRequestLine(initialRequestLine, 2);
+        version = parseInitialRequestLine(initialRequestLine, 2);
+        System.out.println(version);
+        return version;
     }
 
-    public static String parseInitialRequestLine(String initialRequestLine, int elementInLine){
+    private static String parseInitialRequestLine(String initialRequestLine, int elementInLine){
         String element = null;
         String words[] = initialRequestLine.split(" ");
         element = words[elementInLine];
         return element;
     }
+
+    public static String getResponseInitialLine(){
+        String response = version + " 200 OK";
+        return response;
+    }
+
+
 }
