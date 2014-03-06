@@ -31,25 +31,21 @@ public class Server {
     }
 
     public static String parseRequestMethod(String initialRequestLine){
-        String method = null;
-        String words[] = initialRequestLine.split(" ");
-        method = words[0];
-        System.out.println(method);
-        return method;
+        return parseInitialRequestLine(initialRequestLine, 0);
     }
 
     public static String parsePath(String initialRequestLine){
-        String path = null;
-        String words[] = initialRequestLine.split(" ");
-        path = words[1];
-        System.out.println(path);
-        return path;
+        return parseInitialRequestLine(initialRequestLine, 1);
     }
 
     public static String parseHTTPVersion(String initialRequestLine){
-        String version = null;
+      return parseInitialRequestLine(initialRequestLine, 2);
+    }
+
+    public static String parseInitialRequestLine(String initialRequestLine, int elementInLine){
+        String element = null;
         String words[] = initialRequestLine.split(" ");
-        version = words[2];
-        return version;
+        element = words[elementInLine];
+        return element;
     }
 }
