@@ -37,8 +37,18 @@ public class ServerTest {
 //    the first piece of the response should be the HTTP version - HTTP/1.0
 //    HTTP version + status code + english translation of status code
     public void initialResponseLine(){
-        String response = "HTTP/1.0 200 OK";
+        String response = "HTTP/1.0 200 OK\r\n";
         assertEquals(response, Server.getResponseInitialLine());
+    }
+
+    @Test
+    public void requiresHostHeaderFromRequest(){
+
+    }
+
+    @Test
+    public void returnsBadRequestIfNoHostPresent(){
+
     }
 }
 
