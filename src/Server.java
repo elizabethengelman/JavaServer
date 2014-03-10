@@ -26,9 +26,12 @@ public class Server {
         System.out.println("Server started");
         ServerSocket serverSocket = new ServerSocket(portNumber);
         try{
+                int x = 0;
+                while(x < 2){
                 BrowserThread thread = new BrowserThread(serverSocket.accept());
                 thread.start();
-
+                    x++;
+                }
         }
         finally{
             serverSocket.close();
@@ -52,6 +55,7 @@ public class Server {
                 BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
                 output.println(getResponseInitialLine());
+                System.out.println("a new browser is connected");
             }
             catch(IOException e){
                 System.out.println(e);
