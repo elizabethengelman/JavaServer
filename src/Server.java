@@ -25,47 +25,14 @@ public class Server {
         String method;
         System.out.println("Server started");
         ServerSocket serverSocket = new ServerSocket(portNumber);
-        Socket clientSocket = serverSocket.accept();
-        BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
-        String fromRequest = " ";
-//                    try{
-//                while ((fromRequest.length()) != 0){
-//                    requestArray.add(fromRequest = input.readLine());
-//                    System.out.println(requestArray);
-//                }
-//                parseRequestMethod(requestArray.get(0));//this should only be done on the first line
-//                parsePath(requestArray.get(0));//this should only be done on the first line
-//                parseHTTPVersion(requestArray.get(0));//this should only be done on the first line
-                output.println(getResponseInitialLine());
+        try{
+                BrowserThread thread = new BrowserThread(serverSocket.accept());
+                thread.start();
 
-
-//            }
-//        catch (IOException e){
-//            System.out.println(e.getMessage());
-//        }
-    }
-
-//    public static String parseRequestMethod(String initialRequestLine){
-//        method = parseInitialRequestLine(initialRequestLine, 0);
-//        return method;
-//    }
-//
-//    public static String parsePath(String initialRequestLine){
-//        path = parseInitialRequestLine(initialRequestLine, 1);
-//        return path;
-//    }
-
-    public static String parseHTTPVersion(String initialRequestLine){
-        httpVersion = parseInitialRequestLine(initialRequestLine, 2);
-        return httpVersion;
-    }
-
-    private static String parseInitialRequestLine(String initialRequestLine, int elementInLine){
-        String element = null;
-        String words[] = initialRequestLine.split(" ");
-        element = words[elementInLine];
-        return element;
+        }
+        finally{
+            serverSocket.close();
+        }
     }
 
     public static String getResponseInitialLine(){
@@ -73,4 +40,23 @@ public class Server {
         return response;
     }
 
+    public static class BrowserThread extends Thread {
+        private Socket socket;
+
+        public BrowserThread(Socket socket){
+            this.socket = socket;
+        }
+
+        public void run(){
+            try{
+                BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+                output.println(getResponseInitialLine());
+            }
+            catch(IOException e){
+                System.out.println(e);
+            }
+
+        }
+    }
 }
