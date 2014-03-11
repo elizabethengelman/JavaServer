@@ -26,24 +26,29 @@ public class Server {
                 requestPath = getPath(request);
 
                 if (requestMethod.equals("GET")) {
-                    if (requestPath.equals("/")){
+                    if (requestPath.equals("/")) {
                         sendOkResponseWithoutBody();
-                    }
-                    else if (new File("../cob_spec/public" + requestPath).exists()){
+                    } else if (new File("../cob_spec/public" + requestPath).exists()) {
                         sendResponse("200 OK", readFile());
-//                        outputToClient.println(readFile());
-                    }
-                    else{
+                    } else {
                         sendResponse("404 Not Found", "404 File Not Found");
                     }
                 } else if (requestMethod.equals("POST")) {
-                    sendOkResponseWithoutBody();
+                    if (new File("../cob_spec/public" + requestPath).exists()) {
+                        send405();
+                    }else{
+                        sendOkResponseWithoutBody();
+                    }
                 } else if (requestMethod.equals("PUT")) {
-                    sendOkResponseWithoutBody();
+                    if (new File("../cob_spec/public" + requestPath).exists()) {
+                        send405();
+                    }else{
+                        sendOkResponseWithoutBody();
+                    }
                 } else if (requestMethod.equals("HEAD")) {
                     sendOkResponseWithoutBody();
                 } else if (requestMethod.equals("OPTIONS")) {
-                    sendResponse("200 OK \r\n Allow: GET,HEAD,POST,OPTIONS,PUT", "");
+                    sendResponse("200 OK\n Allow: GET,HEAD,POST,OPTIONS,PUT", "");
                 }
 
             } catch (IOException e) {
@@ -68,23 +73,28 @@ public class Server {
                 fileContent.append(currentLine + '\n');
             }
             return fileContent.toString();
-        } 
-        private void sendOkResponseWithoutBody(){
+        }
+
+        private void sendOkResponseWithoutBody() {
             sendResponse("200 OK", "");
         }
 
-        private void sendResponse(String status, String body){
-            outputToClient.println(httpVersion + " " + status +"\r\n");
-            outputToClient.println(body +"\r\n");
+        private void sendResponse(String status, String body) {
+            outputToClient.println(httpVersion + " " + status + "\r\n");
+            outputToClient.println(body + "\r\n");
 
 
             outputToClient.close();
         }
 
+        public void send405() {
+            sendResponse("405 Method Not Allowed", "");
+        }
+
     }
 
+
     public static String getHTTPVersion(String request) {
-        System.out.println(Thread.currentThread().getName());
         return request.split(" ")[2];
     }
 
