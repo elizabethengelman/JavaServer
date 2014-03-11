@@ -10,8 +10,6 @@ public class Server {
         String httpVersion;
         String requestMethod;
         String requestPath;
-        String HTML_Start = "<html><body>";
-        String HTML_END = "</body></html>";
 
         public ServerThread(Socket newConnection) {
             connectedClient = newConnection;
@@ -27,56 +25,66 @@ public class Server {
                 requestMethod = getMethod(request);
                 requestPath = getPath(request);
 
-                System.out.println("This is the httpVersion: " + httpVersion);
-                System.out.println("This is the request Method: " + requestMethod);
-                System.out.println("This is the request path: " + requestPath);
-
                 if (requestMethod.equals("GET")) {
                     if (requestPath.equals("/")){
-                        outputToClient.println(httpVersion + " 200 OK\r\n");//needs the println (instead of print) in order to pass
+                        sendOkResponseWithoutBody();
                     }
                     else if (new File("../cob_spec/public" + requestPath).exists()){
-                        outputToClient.println(httpVersion + " 200 OK\r\n");
-                        BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + requestPath));
-                        String currentLine;
-                        while ((currentLine = fileBR.readLine()) != null) {
-                            outputToClient.println(currentLine);
-                        }
+                        sendResponse("200 OK", readFile());
+//                        outputToClient.println(readFile());
                     }
                     else{
-                        outputToClient.println(httpVersion + " 404 Not Found\r\n");
-                        outputToClient.println("404 File Not Found");
-                        outputToClient.close();
+                        sendResponse("404 Not Found", "404 File Not Found");
                     }
                 } else if (requestMethod.equals("POST")) {
-                    outputToClient.println(httpVersion + " 200 OK");
+                    sendOkResponseWithoutBody();
                 } else if (requestMethod.equals("PUT")) {
-                    outputToClient.println(httpVersion + " 200 OK");
+                    sendOkResponseWithoutBody();
                 } else if (requestMethod.equals("HEAD")) {
-                    outputToClient.println(httpVersion + " 200 OK");
+                    sendOkResponseWithoutBody();
                 } else if (requestMethod.equals("OPTIONS")) {
-                    outputToClient.println(httpVersion + " 200 OK");
-                    outputToClient.println("Allow: GET,HEAD,POST,OPTIONS,PUT");
+                    sendResponse("200 OK \r\n Allow: GET,HEAD,POST,OPTIONS,PUT", "");
                 }
-
 
             } catch (IOException e) {
                 System.out.println(e);
             }
-            //***do i need this in order for the test to work? otherwise it doesn't seem to close the sockets properly
+            //***do i need this in order for the test suite to work? otherwise it doesn't seem to close the sockets properly
             finally {
                 try {
                     System.out.println("A client is going down, closing it's socket");
                     connectedClient.close();
                 } catch (IOException e) {
+                    System.out.println(e);
                 }
             }
-
-
         }
+
+        private String readFile() throws IOException {
+            BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + requestPath));
+            String currentLine;
+            StringBuffer fileContent = new StringBuffer();
+            while ((currentLine = fileBR.readLine()) != null) {
+                fileContent.append(currentLine + '\n');
+            }
+            return fileContent.toString();
+        } 
+        private void sendOkResponseWithoutBody(){
+            sendResponse("200 OK", "");
+        }
+
+        private void sendResponse(String status, String body){
+            outputToClient.println(httpVersion + " " + status +"\r\n");
+            outputToClient.println(body +"\r\n");
+
+
+            outputToClient.close();
+        }
+
     }
 
     public static String getHTTPVersion(String request) {
+        System.out.println(Thread.currentThread().getName());
         return request.split(" ")[2];
     }
 
@@ -88,9 +96,6 @@ public class Server {
         return request.split(" ")[1];
     }
 
-    public static boolean isAFile(String filename){
-        return true;
-    }
     public static void main(String[] args) throws IOException {
         int portNumber = 5000;
         System.out.println("Server started!");
@@ -100,14 +105,9 @@ public class Server {
                 Socket newConnection = serverSocket.accept();
                 ServerThread newThread = new ServerThread(newConnection);
                 newThread.start();
-                System.out.println(newConnection.getInetAddress() + "connected");
             }
         } finally {
             serverSocket.close();
         }
-
-
     }
-
-
 }
