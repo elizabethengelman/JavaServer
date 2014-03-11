@@ -27,15 +27,15 @@ public class Server{
                 System.out.println("This is the httpVersion: " + httpVersion);
                 System.out.println("This is the request Method: " + requestMethod);
                 System.out.println("This is the request path: " + requestPath);
-//                String currentLine;
-//                BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + requestPath));
 
 
                 if (requestMethod.equals("GET")){
                     outputToClient.println(httpVersion + " 200 OK\r\n");//needs the println (instead of print) in order to pass
-//                    while ((currentLine = fileBR.readLine()) != null){
-//                        outputToClient.println(currentLine);
-//                    }
+                    BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public/file1"));
+                    String currentLine;
+                    while ((currentLine = fileBR.readLine()) != null){
+                        outputToClient.println(currentLine);
+                    }
                     outputToClient.println("<html>file1 contents</html>");
                 }
                 else if (requestMethod.equals("POST")){
