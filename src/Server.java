@@ -55,8 +55,7 @@ public class Server {
                 } else if (requestMethod.equals("HEAD")) {
                     outputToClient.println(httpVersion + " 200 OK");
                 } else if (requestMethod.equals("OPTIONS")) {
-                    outputToClient.println(httpVersion + " 200 OK");
-                    outputToClient.println("Allow: GET,HEAD,POST,OPTIONS,PUT");
+                    outputToClient.println(httpVersion + " 200 OK\nAllow: GET,HEAD,POST,OPTIONS,PUT\r\n");
                 }
 
 
