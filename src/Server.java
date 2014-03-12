@@ -35,41 +35,13 @@ public class Server {
                     }else if (requestMethod.equals("POST")){
                         send405();
                     }
-                }else if(requestMethod.equals("OPTIONS")){
+                }else if(requestPath.equals("/method_options")){
                         sendResponse("200 OK\n Allow: GET,HEAD,POST,OPTIONS,PUT", "");
                 }else if(requestPath.equals("/form")) {
                     sendOkResponseWithoutBody();
                 }else{
                     sendResponse("404 Not Found", "404 File Not Found");
                 }
-
-
-//
-//                if (requestMethod.equals("GET")) {
-//                    if (requestPath.equals("/")) {
-//                        sendOkResponseWithoutBody();
-//                    } else if (new File("../cob_spec/public" + requestPath).exists()) {
-//                        sendResponse("200 OK", readFile());
-//                    } else {
-//                        sendResponse("404 Not Found", "404 File Not Found");
-//                    }
-//                } else if (requestMethod.equals("POST")) {
-//                    if (new File("../cob_spec/public" + requestPath).exists()) {
-//                        send405();
-//                    }else{
-//                        sendOkResponseWithoutBody();
-//                    }
-//                } else if (requestMethod.equals("PUT")) {
-//                    if (new File("../cob_spec/public" + requestPath).exists()) {
-//                        send405();
-//                    }else{
-//                        sendOkResponseWithoutBody();
-//                    }
-//                } else if (requestMethod.equals("HEAD")) {
-//                    sendOkResponseWithoutBody();
-//                } else if (requestMethod.equals("OPTIONS")) {
-//                    sendResponse("200 OK\n Allow: GET,HEAD,POST,OPTIONS,PUT", "");
-//                }
 
             } catch (IOException e) {
                 System.out.println(e);
