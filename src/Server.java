@@ -82,9 +82,7 @@ public class Server {
         public void send405() {
             sendResponse("405 Method Not Allowed", "");
         }
-
     }
-
 
     public static String getHTTPVersion(String request) {
         return request.split(" ")[2];
