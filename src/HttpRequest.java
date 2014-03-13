@@ -30,4 +30,5 @@ public class HttpRequest {
     public String getHttpVersion(){
         return requestString.split(" ")[2];
     }
+
 }

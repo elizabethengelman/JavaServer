@@ -1,4 +1,5 @@
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,6 +20,10 @@ public class HttpServer {
                 request = new HttpRequest(connectedClient.getInputStream());
                 response = new HttpResponse(request);
                 response.sendResponse(response.createResponse(), response.requestBody, outputToClient);
+                if (response.isAnImage() == true){
+                    System.out.println("it is an image file!");
+                    response.sendImageResponse(response.requestImageBody, connectedClient.getOutputStream());
+                }
             } catch (IOException e) {
                 System.out.println(e);
             }

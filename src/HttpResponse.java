@@ -1,3 +1,5 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 /**
@@ -6,6 +8,7 @@ import java.io.*;
 public class HttpResponse {
     HttpRequest request;
     String requestBody = "";
+    BufferedImage requestImageBody;
     public HttpResponse(HttpRequest req){
         request = req;
     }
@@ -16,8 +19,20 @@ public class HttpResponse {
             responseReturned.append(create200Response());
         }else if(new File("../cob_spec/public" + request.getPath()).exists()){
             if (request.getMethod().equals("GET")){
-                responseReturned.append("HTTP/1.1 200 OK\r\n");
-                requestBody = createBody();
+
+                if (isAnImage()){
+                    responseReturned.append("HTTP/1.1 200 OK\nContent-Type: image/png");
+                    try{
+                        requestImageBody = readImageFile();
+                    }
+                    catch(IOException e){
+                        System.out.println(e);
+                    }
+                }else{
+                      responseReturned.append("HTTP/1.1 200 OK\r\n");
+                      requestBody = createBody();
+                }
+
             }else if (request.getMethod().equals("PUT")){
                 responseReturned.append(create405Response());
             }else if (request.getMethod().equals("POST")){
@@ -37,7 +52,21 @@ public class HttpResponse {
     public void sendResponse(String response, String body, PrintWriter outputToClient){
         outputToClient.println(response);
         outputToClient.println(body);
-        outputToClient.close();
+    }
+
+    public void sendImageResponse(BufferedImage image, OutputStream outputStream){
+        try {
+            if (isAPngFile()){
+                ImageIO.write(image, "png", outputStream);
+            }else if (isAJpegFile()){
+                ImageIO.write(image, "jpg", outputStream);
+            }else if (isAGifFile()){
+                ImageIO.write(image, "gif", outputStream);
+            }
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
     }
 
     private String readFile() throws IOException {
@@ -48,6 +77,12 @@ public class HttpResponse {
             fileContent.append(currentLine + '\n');
         }
         return fileContent.toString();
+    }
+
+    private BufferedImage readImageFile() throws IOException{
+        BufferedImage image = ImageIO.read(new File("../cob_spec/public" + request.getPath()));
+        System.out.println(image);
+        return image;
     }
 
     private String create200Response(){
@@ -66,4 +101,38 @@ public class HttpResponse {
         }
        return body;
     }
+    private Boolean isAGifFile(){
+        Boolean outcome = false;
+        if (request.getPath().contains("gif")){
+            outcome = true;
+        }
+        return outcome;
+    }
+
+    private Boolean isAJpegFile(){
+        Boolean outcome = false;
+        if (request.getPath().contains("jpeg")){
+            outcome = true;
+        }if (request.getPath().contains("jpg")){
+            outcome = true;
+        }
+        return outcome;
+    }
+
+    private Boolean isAPngFile(){
+        Boolean outcome = false;
+        if (request.getPath().contains("png")){
+            outcome = true;
+        }
+        return outcome;
+    }
+
+    public Boolean isAnImage() {
+        if (isAGifFile() || isAJpegFile() || isAPngFile()){
+            return true;
+        }else{
+            return false;
+            }
+    }
+
 }
