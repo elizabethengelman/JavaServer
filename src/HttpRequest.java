@@ -27,6 +27,10 @@ public class HttpRequest {
         return requestString.split(" ")[1];
     }
 
+    public void setPath(String newPath){
+        requestString = requestString.replace(getPath(), newPath);
+    }
+
     public String getHttpVersion(){
         return requestString.split(" ")[2];
     }

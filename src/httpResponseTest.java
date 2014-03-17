@@ -83,4 +83,12 @@ public class httpResponseTest {
         assertEquals(testBody, response.requestBody);
     }
 
+    @Test
+    public void testRedirect(){
+        request = new HttpRequest(new ByteArrayInputStream(("GET /redirect HTTP/1/1".getBytes())));
+        response = new HttpResponse(request);
+        request.setPath("/");
+        assertEquals("/", request.getPath());
+    }
+
 }

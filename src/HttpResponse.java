@@ -22,7 +22,7 @@ public class HttpResponse {
                 if (isAnImage()){
                     try{
                         requestImageBody = readImageFile();
-                        responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\nContent-Length: " + getSizeOfImage());
+                        responseReturned.append("HTTP/1.1 200 OK\r\nAccept-Ranges: bytes\nContent-Type: image/png\nContent-Length: " + getSizeOfImage() + "\r");
                     }
                     catch(IOException e){
                         System.out.println(e);
@@ -41,7 +41,12 @@ public class HttpResponse {
             responseReturned.append(create200Response());
         }else if(request.getPath().equals("/method_options")){
             responseReturned.append("HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
-        }else if(request.getPath().contains("/parameters")){
+        }else if(request.getPath().equals("/redirect")){
+            responseReturned.append("HTTP/1.1 307\r\nLocation: /");
+            request.setPath("/");
+            System.out.println("this is the request: " + request.getPath());
+        }
+        else if(request.getPath().contains("/parameters")){
             responseReturned.append(create200Response());
             String[] params = request.getIndividualParams();
             for (String param : params){
@@ -58,18 +63,22 @@ public class HttpResponse {
 
     public void sendResponse(String response, String body, PrintWriter outputToClient){
         outputToClient.println(response);
+        System.out.println(response);
         outputToClient.println(body);
     }
 
     public void sendImageResponse(BufferedImage image, OutputStream outputStream){
         try {
-            if (isAPngFile()){
-                ImageIO.write(image, "png", outputStream);
-            }else if (isAJpegFile()){
-                ImageIO.write(image, "jpg", outputStream);
-            }else if (isAGifFile()){
-                ImageIO.write(image, "gif", outputStream);
-            }
+//            if (isAPngFile()){
+//                ImageIO.write(image, "png", outputStream);
+//            }else if (isAJpegFile()){
+//                ImageIO.write(image, "jpg", outputStream);
+//            }else if (isAGifFile()){
+//                ImageIO.write(image, "gif", outputStream);
+
+            ImageIO.write(image, "png", outputStream);
+
+//            }
         }
         catch(IOException e){
             System.out.println(e);
@@ -88,7 +97,6 @@ public class HttpResponse {
 
     private BufferedImage readImageFile() throws IOException{
         BufferedImage image = ImageIO.read(new File("../cob_spec/public" + request.getPath()));
-        System.out.println(image);
         return image;
     }
 
