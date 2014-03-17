@@ -50,9 +50,6 @@ public class HttpRequest {
     public String[] getIndividualParams(){
         String params = getParametersFromPath();
         String[] paramPairs = params.split("&");
-        for (String param : paramPairs){
-            System.out.println(param);
-        }
         return paramPairs;
     }
 

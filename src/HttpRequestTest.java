@@ -31,4 +31,30 @@ public class HttpRequestTest {
         HttpRequest request = new HttpRequest(inputStream);
         assertEquals("HTTP/1.1", request.getHttpVersion());
     }
+
+    @Test
+    public void testGetParametersFromPath(){
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(("GET /parameters?test=testtesttest").getBytes());
+        HttpRequest request = new HttpRequest(inputStream);
+        assertEquals("test=testtesttest", request.getParametersFromPath());
+    }
+
+    @Test
+    public void testGetVariableName(){
+        assertEquals("variableName", request.getParameterVariableName("variableName=variableValue"));
+
+    }
+
+    @Test
+    public void testGetVariableValue(){
+        assertEquals("variableValue", request.getParameterVariableValue("variableName=variableValue"));
+    }
+
+    @Test
+    public void breakUpParameters(){
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(("GET /parameters?variable_1=test1&variable_2=test2").getBytes());
+        HttpRequest request = new HttpRequest(inputStream);
+        assertEquals("variable_1=test1", request.getIndividualParams()[0]);
+        assertEquals("variable_2=test2", request.getIndividualParams()[1]);
+    }
 }
