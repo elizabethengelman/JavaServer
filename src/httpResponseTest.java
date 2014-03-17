@@ -50,6 +50,15 @@ public class httpResponseTest {
     }
 
     @Test
+    public void testCreatingBodyWithFile(){
+        request = new HttpRequest(new ByteArrayInputStream(("GET /file1 HTTP/1/1".getBytes())));
+        response = new HttpResponse(request);
+        String testBody = "file1 contents\n";
+        response.createResponse();
+        assertEquals(testBody, response.requestBody);
+    }
+
+    @Test
     public void notMethodIfPostMethodWithFile(){
         request = new HttpRequest(new ByteArrayInputStream(("POST /file1 HTTP/1.1").getBytes()));
         response = new HttpResponse(request);
@@ -72,11 +81,6 @@ public class httpResponseTest {
         String testBody = "variable_1 = test1\nvariable_2 = test2\n";
         response.createResponse();
         assertEquals(testBody, response.requestBody);
-    }
-
-//    @Test
-    public void testCreatingBodyWithFile(){
-
     }
 
 }
