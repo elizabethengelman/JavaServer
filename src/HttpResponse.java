@@ -19,11 +19,10 @@ public class HttpResponse {
             responseReturned.append(create200Response());
         }else if(new File("../cob_spec/public" + request.getPath()).exists()){
             if (request.getMethod().equals("GET")){
-
                 if (isAnImage()){
-                    responseReturned.append("HTTP/1.1 200 OK\nContent-Type: image/png");
                     try{
                         requestImageBody = readImageFile();
+                        responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\nContent-Length: " + getSizeOfImage());
                     }
                     catch(IOException e){
                         System.out.println(e);
@@ -41,8 +40,16 @@ public class HttpResponse {
         }else if(request.getPath().equals("/form")) {
             responseReturned.append(create200Response());
         }else if(request.getPath().equals("/method_options")){
-            responseReturned.append("HTTP/1.1 200 OK\n Allow: GET,HEAD,POST,OPTIONS,PUT");
-        }else{
+            responseReturned.append("HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
+        }else if(request.getPath().contains("/parameters")){
+            responseReturned.append(create200Response());
+            String[] params = request.getIndividualParams();
+            for (String param : params){
+                requestBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
+            }
+        }
+
+        else{
             responseReturned.append("HTTP/1.1 404 Not Found\r\n");
             requestBody = "File not found.";
         }
@@ -86,8 +93,9 @@ public class HttpResponse {
     }
 
     private String create200Response(){
-        return "HTTP/1.1 200 OK \r\n";
+        return "HTTP/1.1 200 OK\r\n";
     }
+
     private String create405Response(){
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
@@ -133,6 +141,14 @@ public class HttpResponse {
         }else{
             return false;
             }
+    }
+    public String getSizeOfImage() throws IOException {
+        ByteArrayOutputStream tmp = new ByteArrayOutputStream();
+        ImageIO.write(requestImageBody, "png", tmp);
+        tmp.close();
+        Integer contentLength = tmp.size();
+
+        return contentLength.toString();
     }
 
 }
