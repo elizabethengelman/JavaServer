@@ -1,73 +1,113 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by elizabethengelman on 3/6/14.
- */
 public class Server {
-    private static String method;
-    private static String path;
-    private static String version;
-    private static String statusCode;
-    private static String reasonPhrase;
+    public static class ServerThread extends Thread {
+        Socket connectedClient = null;
+        BufferedReader inputFromClient;
+        PrintWriter outputToClient;
+        String httpVersion;
+        String requestMethod;
+        String requestPath;
 
-    public static void main (String[] args) throws IOException {
-        //do i need to set a port number, or just assume it to be on port 80
-        int portNumber = 5000;
-        String method;
-        System.out.println("Server started");
-        ServerSocket serverSocket = new ServerSocket(portNumber);
-        Socket clientSocket = serverSocket.accept();
-        BufferedReader input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
-        try{
-            while (true){
-                String request = input.readLine();
-                parseRequestMethod(request);
-                parsePath(request);
-                parseHTTPVersion(request);
+        public ServerThread(Socket newConnection) {
+            connectedClient = newConnection;
+        }
 
-                System.out.println(request);
-                output.println(getResponseInitialLine());
+        public void run() {
+            try {
+                inputFromClient = new BufferedReader(new InputStreamReader(connectedClient.getInputStream()));
+                outputToClient = new PrintWriter(connectedClient.getOutputStream(), true);//needs the true to pass the test - autoFlush
+                String request = inputFromClient.readLine();
 
+                httpVersion = getHTTPVersion(request);
+                requestMethod = getMethod(request);
+                requestPath = getPath(request);
+
+                if (requestPath.equals("/")){
+                        sendOkResponseWithoutBody();
+                 }else if(new File("../cob_spec/public" + requestPath).exists()){
+                    if (requestMethod.equals("GET")){
+                        sendResponse("200 OK", readFile());
+                    }else if (requestMethod.equals("PUT")){
+                        send405();
+                    }else if (requestMethod.equals("POST")){
+                        send405();
+                    }
+                }else if(requestPath.equals("/method_options")){
+                        sendResponse("200 OK\n Allow: GET,HEAD,POST,OPTIONS,PUT", "");
+                }else if(requestPath.equals("/form")) {
+                    sendOkResponseWithoutBody();
+                }else{
+                    sendResponse("404 Not Found", "404 File Not Found");
+                }
+
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+            //***do i need this in order for the test suite to work? otherwise it doesn't seem to close the sockets properly
+            finally {
+                try {
+                    System.out.println("A client is going down, closing it's socket");
+                    connectedClient.close();
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             }
         }
-        catch (IOException e){
-            System.out.println(e.getMessage());
+
+        private String readFile() throws IOException {
+            BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + requestPath));
+            String currentLine;
+            StringBuffer fileContent = new StringBuffer();
+            while ((currentLine = fileBR.readLine()) != null) {
+                fileContent.append(currentLine + '\n');
+            }
+            return fileContent.toString();
+        }
+
+        private void sendOkResponseWithoutBody() {
+            sendResponse("200 OK", "");
+        }
+
+        private void sendResponse(String status, String body) {
+            outputToClient.println(httpVersion + " " + status + "\r\n");
+            outputToClient.println(body + "\r\n");
+
+
+            outputToClient.close();
+        }
+
+        public void send405() {
+            sendResponse("405 Method Not Allowed", "");
         }
     }
 
-    public static String parseRequestMethod(String initialRequestLine){
-        method = parseInitialRequestLine(initialRequestLine, 0);
-        return method;
+    public static String getHTTPVersion(String request) {
+        return request.split(" ")[2];
     }
 
-    public static String parsePath(String initialRequestLine){
-        path = parseInitialRequestLine(initialRequestLine, 1);
-        return path;
+    public static String getMethod(String request) {
+        return request.split(" ")[0];
     }
 
-    public static String parseHTTPVersion(String initialRequestLine){
-        version = parseInitialRequestLine(initialRequestLine, 2);
-        System.out.println(version);
-        return version;
+    public static String getPath(String request) {
+        return request.split(" ")[1];
     }
 
-    private static String parseInitialRequestLine(String initialRequestLine, int elementInLine){
-        String element = null;
-        String words[] = initialRequestLine.split(" ");
-        element = words[elementInLine];
-        return element;
+    public static void main(String[] args) throws IOException {
+        int portNumber = 5000;
+        System.out.println("Server started!");
+        ServerSocket serverSocket = new ServerSocket(portNumber);
+        try {
+            while (true) {
+                Socket newConnection = serverSocket.accept();
+                ServerThread newThread = new ServerThread(newConnection);
+                newThread.start();
+            }
+        } finally {
+            serverSocket.close();
+        }
     }
-
-    public static String getResponseInitialLine(){
-        String response = version + " 200 OK";
-        return response;
-    }
-
-
 }
