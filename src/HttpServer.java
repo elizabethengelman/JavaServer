@@ -1,12 +1,10 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class HttpServer {
     public static class ServerThread extends Thread {
         Socket connectedClient = null;
-        PrintWriter outputToClient;
         HttpRequest request;
         HttpResponse response;
 

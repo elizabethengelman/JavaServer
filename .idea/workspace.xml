@@ -64,10 +64,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HttpResponse.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="HttpResponse.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="36" selection-start="563" selection-end="563" vertical-scroll-proportion="-3.1153846" vertical-offset="234" max-vertical-offset="2520">
+            <state line="92" column="49" selection-start="3616" selection-end="3616" vertical-scroll-proportion="0.6309227" vertical-offset="1127" max-vertical-offset="2565">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpServer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HttpServer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="74" selection-start="654" selection-end="729" vertical-scroll-proportion="0.375" vertical-offset="105" max-vertical-offset="810">
+            <state line="7" column="28" selection-start="230" selection-end="230" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
               <folding />
             </state>
           </provider>
@@ -103,14 +103,14 @@
         <option value="$PROJECT_DIR$/src/HttpRequestTest.java" />
         <option value="$PROJECT_DIR$/src/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/httpResponseTest.java" />
-        <option value="$PROJECT_DIR$/src/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/HttpServer.java" />
+        <option value="$PROJECT_DIR$/src/HttpResponse.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1276" />
+    <option name="width" value="637" />
     <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -447,7 +447,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1276" height="778" extended-state="0" />
+    <frame x="0" y="22" width="637" height="778" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -757,19 +757,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="36" selection-start="563" selection-end="563" vertical-scroll-proportion="-3.1153846" vertical-offset="234" max-vertical-offset="2520">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="7" column="28" selection-start="230" selection-end="230" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
+    <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="74" selection-start="654" selection-end="729" vertical-scroll-proportion="0.375" vertical-offset="105" max-vertical-offset="810">
-          <folding />
+        <state line="92" column="49" selection-start="3616" selection-end="3616" vertical-scroll-proportion="0.6309227" vertical-offset="1127" max-vertical-offset="2565">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

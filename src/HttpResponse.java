@@ -48,13 +48,16 @@ public class HttpResponse {
             responseReturned.append("HTTP/1.1 307\r\nLocation: http://localhost:5000/");
             request.setPath("/");
         }
-//        else if(request.getPath().contains("/parameters")){
-//            responseReturned.append(create200Response());
-//            String[] params = request.getIndividualParams();
-//            for (String param : params){
-//                requestBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
-//            }
-//        }
+        else if(request.getPath().contains("/parameters")){
+            responseReturned.append(create200Response());
+            String[] params = request.getIndividualParams();
+            String tempBody = new String();
+            for (String param : params){
+                tempBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
+            }
+            System.out.println("this is tempBody: " + tempBody);
+            requestBody = tempBody.getBytes();
+        }
 
         else{
             responseReturned.append("HTTP/1.1 404 Not Found\r\n");
