@@ -8,7 +8,7 @@ import java.nio.file.Paths;
  */
 public class HttpResponse {
     HttpRequest request;
-    String requestBody = "";
+    byte[] requestBody;
     byte[] requestImageBody;
     StringBuffer responseReturned = new StringBuffer();
     public HttpResponse(HttpRequest req){
@@ -19,19 +19,20 @@ public class HttpResponse {
 
         if (request.getPath().equals("/")){
             responseReturned.append(create200Response());
+            requestBody = new byte[0];
         }else if(new File("../cob_spec/public" + request.getPath()).exists()){
             if (request.getMethod().equals("GET")){
                 if (isAnImage()){
                     try{
-                        requestImageBody = readImageFile();
-                        responseReturned.append("HTTP/1.1 200 OK\r\nAccept-Ranges: bytes\nContent-Type: image/png\r\n\r\n");
+                        requestBody = readImageFile();
+                        responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
                     }
                     catch(IOException e){
                         System.out.println(e);
                     }
                 }else{
-                      responseReturned.append("HTTP/1.1 200 OK\r\n");
-                      requestBody = createBody();
+                      responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n");
+                      setBody();
                 }
 
             }else if (request.getMethod().equals("PUT")){
@@ -47,17 +48,17 @@ public class HttpResponse {
             responseReturned.append("HTTP/1.1 307\r\nLocation: http://localhost:5000/");
             request.setPath("/");
         }
-        else if(request.getPath().contains("/parameters")){
-            responseReturned.append(create200Response());
-            String[] params = request.getIndividualParams();
-            for (String param : params){
-                requestBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
-            }
-        }
+//        else if(request.getPath().contains("/parameters")){
+//            responseReturned.append(create200Response());
+//            String[] params = request.getIndividualParams();
+//            for (String param : params){
+//                requestBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
+//            }
+//        }
 
         else{
             responseReturned.append("HTTP/1.1 404 Not Found\r\n");
-            requestBody = "File not found.";
+//            requestBody = "File not found.";
         }
         return responseReturned.toString();
     }
@@ -67,7 +68,7 @@ public class HttpResponse {
         outputToClient.println(body);
     }
 
-    public void sendImageResponse(OutputStream outputStream){
+    public void sendNewResponse(OutputStream outputStream){
         try {
             byte[] requestHeader = responseReturned.toString().getBytes();
 //            if (isAPngFile()){
@@ -78,10 +79,7 @@ public class HttpResponse {
 //                ImageIO.write(image, "gif", outputStream);
             DataOutputStream dOut = new DataOutputStream(outputStream);
             dOut.write(requestHeader);
-            dOut.write(requestImageBody);
-//            ImageIO.write(image, "png", outputStream);
-
-//            }
+            dOut.write(requestBody);
         }
         catch(IOException e){
             System.out.println(e);
@@ -106,21 +104,19 @@ public class HttpResponse {
     }
 
     private String create200Response(){
-        return "HTTP/1.1 200 OK\r\n";
+        return "HTTP/1.1 200 OK\r\n\r\n";
     }
 
     private String create405Response(){
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
 
-    private String createBody(){
-        String body = new String();
+    private void setBody(){
         try{
-            body = readFile();
+            requestBody = readImageFile();
         }catch(IOException e){
             e.printStackTrace();
         }
-       return body;
     }
     private Boolean isAGifFile(){
         Boolean outcome = false;

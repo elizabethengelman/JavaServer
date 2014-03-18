@@ -16,15 +16,10 @@ public class HttpServer {
 
         public void run() {
             try {
-                outputToClient = new PrintWriter(connectedClient.getOutputStream(), true);//needs the true to pass the test - autoFlush
                 request = new HttpRequest(connectedClient.getInputStream());
                 response = new HttpResponse(request);
-//                response.sendResponse(response.createResponse(), response.requestBody, outputToClient);
-                if (response.isAnImage() == true){
-                    response.createResponse();
-                    System.out.println("it is an image file!");
-                    response.sendImageResponse(connectedClient.getOutputStream());
-                }
+                response.createResponse();
+                response.sendNewResponse(connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
             }
@@ -34,6 +29,7 @@ public class HttpServer {
                     connectedClient.close();
                 } catch (IOException e) {
                     System.out.println(e);
+                    System.out.println("this is from the thread");
                 }
             }
         }
