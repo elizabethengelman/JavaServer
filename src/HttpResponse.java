@@ -42,8 +42,9 @@ public class HttpResponse {
         }else if(request.getPath().equals("/method_options")){
             responseReturned.append("HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
         }else if(request.getPath().equals("/redirect")){
-            responseReturned.append("HTTP/1.1 307\r\nLocation: /");
+            responseReturned.append("HTTP/1.1 307\r\nLocation: http://localhost:5000/");
             request.setPath("/");
+            getCurrentURL();
             System.out.println("this is the request: " + request.getPath());
         }
         else if(request.getPath().contains("/parameters")){
@@ -157,6 +158,12 @@ public class HttpResponse {
         Integer contentLength = tmp.size();
 
         return contentLength.toString();
+    }
+
+    public String getCurrentURL(){
+        String path = request.getPath();
+        System.out.println("this is the current url: " + path);
+        return null;
     }
 
 }
