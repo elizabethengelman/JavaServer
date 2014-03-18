@@ -23,16 +23,11 @@ public class HttpResponse {
         }else if(new File("../cob_spec/public" + request.getPath()).exists()){
             if (request.getMethod().equals("GET")){
                 if (isAnImage()){
-                    try{
-                        requestBody = readImageFile();
                         responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
-                    }
-                    catch(IOException e){
-                        System.out.println(e);
-                    }
+                        setBodyContent();
                 }else{
                       responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n");
-                      setBody();
+                      setBodyContent();
                 }
 
             }else if (request.getMethod().equals("PUT")){
@@ -58,28 +53,21 @@ public class HttpResponse {
             System.out.println("this is tempBody: " + tempBody);
             requestBody = tempBody.getBytes();
         }
-
         else{
-            responseReturned.append("HTTP/1.1 404 Not Found\r\n");
-//            requestBody = "File not found.";
+            responseReturned.append("HTTP/1.1 404 Not Found\r\n\r\n");
+            requestBody = ("File not found.").getBytes();
         }
         return responseReturned.toString();
     }
-
-    public void sendResponse(String response, String body, PrintWriter outputToClient){
-        outputToClient.println(response);
-        outputToClient.println(body);
-    }
+//
+//    public void sendResponse(String response, String body, PrintWriter outputToClient){
+//        outputToClient.println(response);
+//        outputToClient.println(body);
+//    }
 
     public void sendNewResponse(OutputStream outputStream){
         try {
             byte[] requestHeader = responseReturned.toString().getBytes();
-//            if (isAPngFile()){
-//                ImageIO.write(image, "png", outputStream);
-//            }else if (isAJpegFile()){
-//                ImageIO.write(image, "jpg", outputStream);
-//            }else if (isAGifFile()){
-//                ImageIO.write(image, "gif", outputStream);
             DataOutputStream dOut = new DataOutputStream(outputStream);
             dOut.write(requestHeader);
             dOut.write(requestBody);
@@ -89,17 +77,17 @@ public class HttpResponse {
         }
     }
 
-    private String readFile() throws IOException {
-        BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + request.getPath()));
-        String currentLine;
-        StringBuffer fileContent = new StringBuffer();
-        while ((currentLine = fileBR.readLine()) != null) {
-            fileContent.append(currentLine + '\n');
-        }
-        return fileContent.toString();
-    }
+//    private String readFile() throws IOException {
+//        BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + request.getPath()));
+//        String currentLine;
+//        StringBuffer fileContent = new StringBuffer();
+//        while ((currentLine = fileBR.readLine()) != null) {
+//            fileContent.append(currentLine + '\n');
+//        }
+//        return fileContent.toString();
+//    }
 
-    private byte[] readImageFile() throws IOException{
+    private byte[] readFile() throws IOException{
 //        BufferedImage image = ImageIO.read(new File("../cob_spec/public" + request.getPath()));
         Path path = Paths.get("../cob_spec/public" + request.getPath());
         byte[] imageFileData = Files.readAllBytes(path);
@@ -114,9 +102,9 @@ public class HttpResponse {
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
 
-    private void setBody(){
+    private void setBodyContent(){
         try{
-            requestBody = readImageFile();
+            requestBody = readFile();
         }catch(IOException e){
             e.printStackTrace();
         }
