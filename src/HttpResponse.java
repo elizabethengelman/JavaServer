@@ -1,6 +1,7 @@
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by elizabethengelman on 3/12/14.
@@ -8,13 +9,14 @@ import java.io.*;
 public class HttpResponse {
     HttpRequest request;
     String requestBody = "";
-    BufferedImage requestImageBody;
+    byte[] requestImageBody;
+    StringBuffer responseReturned = new StringBuffer();
     public HttpResponse(HttpRequest req){
         request = req;
     }
 
     public String createResponse(){
-        StringBuffer responseReturned = new StringBuffer();
+
         if (request.getPath().equals("/")){
             responseReturned.append(create200Response());
         }else if(new File("../cob_spec/public" + request.getPath()).exists()){
@@ -22,7 +24,7 @@ public class HttpResponse {
                 if (isAnImage()){
                     try{
                         requestImageBody = readImageFile();
-                        responseReturned.append("HTTP/1.1 200 OK\r\nAccept-Ranges: bytes\nContent-Type: image/png\nContent-Length: " + getSizeOfImage() + "\r");
+                        responseReturned.append("HTTP/1.1 200 OK\r\nAccept-Ranges: bytes\nContent-Type: image/png\r\n\r\n");
                     }
                     catch(IOException e){
                         System.out.println(e);
@@ -65,16 +67,19 @@ public class HttpResponse {
         outputToClient.println(body);
     }
 
-    public void sendImageResponse(BufferedImage image, OutputStream outputStream){
+    public void sendImageResponse(OutputStream outputStream){
         try {
+            byte[] requestHeader = responseReturned.toString().getBytes();
 //            if (isAPngFile()){
 //                ImageIO.write(image, "png", outputStream);
 //            }else if (isAJpegFile()){
 //                ImageIO.write(image, "jpg", outputStream);
 //            }else if (isAGifFile()){
 //                ImageIO.write(image, "gif", outputStream);
-
-            ImageIO.write(image, "png", outputStream);
+            DataOutputStream dOut = new DataOutputStream(outputStream);
+            dOut.write(requestHeader);
+            dOut.write(requestImageBody);
+//            ImageIO.write(image, "png", outputStream);
 
 //            }
         }
@@ -93,9 +98,11 @@ public class HttpResponse {
         return fileContent.toString();
     }
 
-    private BufferedImage readImageFile() throws IOException{
-        BufferedImage image = ImageIO.read(new File("../cob_spec/public" + request.getPath()));
-        return image;
+    private byte[] readImageFile() throws IOException{
+//        BufferedImage image = ImageIO.read(new File("../cob_spec/public" + request.getPath()));
+        Path path = Paths.get("../cob_spec/public" + request.getPath());
+        byte[] imageFileData = Files.readAllBytes(path);
+        return imageFileData;
     }
 
     private String create200Response(){
@@ -148,12 +155,12 @@ public class HttpResponse {
             return false;
             }
     }
-    public String getSizeOfImage() throws IOException {
-        ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-        ImageIO.write(requestImageBody, "png", tmp);
-        tmp.close();
-        Integer contentLength = tmp.size();
-
-        return contentLength.toString();
-    }
+//    public String getSizeOfImage() throws IOException {
+//        ByteArrayOutputStream tmp = new ByteArrayOutputStream();
+//        ImageIO.write(requestImageBody, "png", tmp);
+//        tmp.close();
+//        Integer contentLength = tmp.size();
+//
+//        return contentLength.toString();
+//    }
 }

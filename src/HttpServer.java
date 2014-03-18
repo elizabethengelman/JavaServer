@@ -19,10 +19,11 @@ public class HttpServer {
                 outputToClient = new PrintWriter(connectedClient.getOutputStream(), true);//needs the true to pass the test - autoFlush
                 request = new HttpRequest(connectedClient.getInputStream());
                 response = new HttpResponse(request);
-                response.sendResponse(response.createResponse(), response.requestBody, outputToClient);
+//                response.sendResponse(response.createResponse(), response.requestBody, outputToClient);
                 if (response.isAnImage() == true){
+                    response.createResponse();
                     System.out.println("it is an image file!");
-                    response.sendImageResponse(response.requestImageBody, connectedClient.getOutputStream());
+                    response.sendImageResponse(connectedClient.getOutputStream());
                 }
             } catch (IOException e) {
                 System.out.println(e);
