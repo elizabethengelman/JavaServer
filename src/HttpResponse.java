@@ -44,8 +44,6 @@ public class HttpResponse {
         }else if(request.getPath().equals("/redirect")){
             responseReturned.append("HTTP/1.1 307\r\nLocation: http://localhost:5000/");
             request.setPath("/");
-            getCurrentURL();
-            System.out.println("this is the request: " + request.getPath());
         }
         else if(request.getPath().contains("/parameters")){
             responseReturned.append(create200Response());
@@ -64,7 +62,6 @@ public class HttpResponse {
 
     public void sendResponse(String response, String body, PrintWriter outputToClient){
         outputToClient.println(response);
-        System.out.println(response);
         outputToClient.println(body);
     }
 
@@ -159,11 +156,4 @@ public class HttpResponse {
 
         return contentLength.toString();
     }
-
-    public String getCurrentURL(){
-        String path = request.getPath();
-        System.out.println("this is the current url: " + path);
-        return null;
-    }
-
 }

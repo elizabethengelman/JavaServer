@@ -67,7 +67,7 @@
       <file leaf-file-name="HttpResponse.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="169" column="0" selection-start="5653" selection-end="5653" vertical-scroll-proportion="0.8564593" vertical-offset="2177" max-vertical-offset="2625">
+            <state line="81" column="18" selection-start="3203" selection-end="3209" vertical-scroll-proportion="0.3325359" vertical-offset="1076" max-vertical-offset="2475">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -747,7 +747,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="0" selection-start="5653" selection-end="5653" vertical-scroll-proportion="0.8564593" vertical-offset="2177" max-vertical-offset="2625">
+        <state line="81" column="18" selection-start="3203" selection-end="3209" vertical-scroll-proportion="0.3325359" vertical-offset="1076" max-vertical-offset="2475">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
