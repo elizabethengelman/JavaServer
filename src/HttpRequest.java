@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -38,18 +37,17 @@ public class HttpRequest {
         return requestString.split(" ")[2];
     }
 
-    public String getParametersFromPath(){
+    private String getParametersFromPath(){
         String parameters = getPath().substring(getPath().lastIndexOf("?") + 1);
-        System.out.println("these are the parameters " + parameters);
         return parameters;
     }
 
-    public String getParameterVariableName(String parameter){
+    private String getParameterName(String parameter){
         String variableName = parameter.substring(0, parameter.indexOf("="));
         return variableName;
     }
 
-    public String getParameterVariableValue(String parameter){
+    private String getParameterValue(String parameter){
         String variableValue = parameter.substring(parameter.indexOf("=") + 1);
         return decodeCharacters(variableValue);
     }
@@ -58,20 +56,11 @@ public class HttpRequest {
         Map<String, String> paramPairs = new LinkedHashMap<String, String>();
         String[] params = getParametersFromPath().split("&");
         for(String param : params){
-            String varName = getParameterVariableName(param);
-            System.out.println(varName);
-            String varValue = getParameterVariableValue(param);
-            System.out.println(varValue);
+            String varName = getParameterName(param);
+            String varValue = getParameterValue(param);
             paramPairs.put(varName, varValue);
         }
-
         return paramPairs;
-    }
-
-    public HashMap<String, String> getIndParams(){
-        String params = getParametersFromPath();
-
-        return null;
     }
 
     public String decodeCharacters(String value){

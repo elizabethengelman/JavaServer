@@ -1,6 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
+
 import java.io.ByteArrayInputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static junit.framework.Assert.assertEquals;
 
 public class HttpRequestTest {
@@ -33,28 +37,12 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void testGetParametersFromPath(){
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(("GET /parameters?test=testtesttest").getBytes());
-        HttpRequest request = new HttpRequest(inputStream);
-        assertEquals("test=testtesttest", request.getParametersFromPath());
-    }
-
-    @Test
-    public void testGetVariableName(){
-        assertEquals("variableName", request.getParameterVariableName("variableName=variableValue"));
-
-    }
-
-    @Test
-    public void testGetVariableValue(){
-        assertEquals("variableValue", request.getParameterVariableValue("variableName=variableValue"));
-    }
-
-    @Test
     public void breakUpParameters(){
         ByteArrayInputStream inputStream = new ByteArrayInputStream(("GET /parameters?variable_1=test1&variable_2=test2").getBytes());
         HttpRequest request = new HttpRequest(inputStream);
-//        assertEquals("variable_1=test1", request.getIndividualParams()[0]);
-//        assertEquals("variable_2=test2", request.getIndividualParams()[1]);
+        Map<String,String> testMap = new LinkedHashMap<String, String>();
+        testMap.put("variable_1", "test1");
+        testMap.put("variable_2", "test2");
+        assertEquals(testMap, request.getIndividualParams());
     }
 }

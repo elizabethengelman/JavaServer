@@ -57,10 +57,6 @@ public class HttpResponse {
                 tempBody += pairs.getKey() + " = " + pairs.getValue() + "\n";
                 it.remove();
             }
-
-
-
-            System.out.println("this is tempBody: " + tempBody);
             requestBody = tempBody.getBytes();
         } else {
             responseReturned.append("HTTP/1.1 404 Not Found\r\n\r\n");
