@@ -9,145 +9,120 @@ import java.nio.file.Paths;
 public class HttpResponse {
     HttpRequest request;
     byte[] requestBody;
-    byte[] requestImageBody;
     StringBuffer responseReturned = new StringBuffer();
-    public HttpResponse(HttpRequest req){
+
+    public HttpResponse(HttpRequest req) {
         request = req;
     }
 
-    public String createResponse(){
+    public String createResponse() {
 
-        if (request.getPath().equals("/")){
+        if (request.getPath().equals("/")) {
             responseReturned.append(create200Response());
             requestBody = new byte[0];
-        }else if(new File("../cob_spec/public" + request.getPath()).exists()){
-            if (request.getMethod().equals("GET")){
-                if (isAnImage()){
-                        responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
-                        setBodyContent();
-                }else{
-                      responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n");
-                      setBodyContent();
+        } else if (new File("../cob_spec/public" + request.getPath()).exists()) {
+            if (request.getMethod().equals("GET")) {
+                if (isAnImage()) {
+                    responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
+                    setBodyContent();
+                } else {
+                    responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n");
+                    setBodyContent();
                 }
 
-            }else if (request.getMethod().equals("PUT")){
+            } else if (request.getMethod().equals("PUT")) {
                 responseReturned.append(create405Response());
-            }else if (request.getMethod().equals("POST")){
+            } else if (request.getMethod().equals("POST")) {
                 responseReturned.append(create405Response());
             }
-        }else if(request.getPath().equals("/form")) {
+        } else if (request.getPath().equals("/form")) {
             responseReturned.append(create200Response());
-        }else if(request.getPath().equals("/method_options")){
+        } else if (request.getPath().equals("/method_options")) {
             responseReturned.append("HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
-        }else if(request.getPath().equals("/redirect")){
+        } else if (request.getPath().equals("/redirect")) {
             responseReturned.append("HTTP/1.1 307\r\nLocation: http://localhost:5000/");
             request.setPath("/");
-        }
-        else if(request.getPath().contains("/parameters")){
+        } else if (request.getPath().contains("/parameters")) {
             responseReturned.append(create200Response());
             String[] params = request.getIndividualParams();
             String tempBody = new String();
-            for (String param : params){
+            for (String param : params) {
                 tempBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
             }
             System.out.println("this is tempBody: " + tempBody);
             requestBody = tempBody.getBytes();
-        }
-        else{
+        } else {
             responseReturned.append("HTTP/1.1 404 Not Found\r\n\r\n");
             requestBody = ("File not found.").getBytes();
         }
         return responseReturned.toString();
     }
-//
-//    public void sendResponse(String response, String body, PrintWriter outputToClient){
-//        outputToClient.println(response);
-//        outputToClient.println(body);
-//    }
 
-    public void sendNewResponse(OutputStream outputStream){
+    public void sendNewResponse(OutputStream outputStream) {
         try {
             byte[] requestHeader = responseReturned.toString().getBytes();
             DataOutputStream dOut = new DataOutputStream(outputStream);
             dOut.write(requestHeader);
             dOut.write(requestBody);
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
     }
 
-//    private String readFile() throws IOException {
-//        BufferedReader fileBR = new BufferedReader(new FileReader("../cob_spec/public" + request.getPath()));
-//        String currentLine;
-//        StringBuffer fileContent = new StringBuffer();
-//        while ((currentLine = fileBR.readLine()) != null) {
-//            fileContent.append(currentLine + '\n');
-//        }
-//        return fileContent.toString();
-//    }
-
-    private byte[] readFile() throws IOException{
-//        BufferedImage image = ImageIO.read(new File("../cob_spec/public" + request.getPath()));
+    private byte[] readFile() throws IOException {
         Path path = Paths.get("../cob_spec/public" + request.getPath());
         byte[] imageFileData = Files.readAllBytes(path);
         return imageFileData;
     }
 
-    private String create200Response(){
+    private String create200Response() {
         return "HTTP/1.1 200 OK\r\n\r\n";
     }
 
-    private String create405Response(){
+    private String create405Response() {
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
 
-    private void setBodyContent(){
-        try{
+    private void setBodyContent() {
+        try {
             requestBody = readFile();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    private Boolean isAGifFile(){
+
+    private Boolean isAGifFile() {
         Boolean outcome = false;
-        if (request.getPath().contains("gif")){
+        if (request.getPath().contains("gif")) {
             outcome = true;
         }
         return outcome;
     }
 
-    private Boolean isAJpegFile(){
+    private Boolean isAJpegFile() {
         Boolean outcome = false;
-        if (request.getPath().contains("jpeg")){
+        if (request.getPath().contains("jpeg")) {
             outcome = true;
-        }if (request.getPath().contains("jpg")){
+        }
+        if (request.getPath().contains("jpg")) {
             outcome = true;
         }
         return outcome;
     }
 
-    private Boolean isAPngFile(){
+    private Boolean isAPngFile() {
         Boolean outcome = false;
-        if (request.getPath().contains("png")){
+        if (request.getPath().contains("png")) {
             outcome = true;
         }
         return outcome;
     }
 
     public Boolean isAnImage() {
-        if (isAGifFile() || isAJpegFile() || isAPngFile()){
+        if (isAGifFile() || isAJpegFile() || isAPngFile()) {
             return true;
-        }else{
+        } else {
             return false;
-            }
+        }
     }
-//    public String getSizeOfImage() throws IOException {
-//        ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-//        ImageIO.write(requestImageBody, "png", tmp);
-//        tmp.close();
-//        Integer contentLength = tmp.size();
-//
-//        return contentLength.toString();
-//    }
 }
