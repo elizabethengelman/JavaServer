@@ -24,12 +24,13 @@ public class HttpResponse {
             requestBody = new byte[0];
         } else if (new File("../cob_spec/public" + request.getPath()).exists()) {
             if (request.getMethod().equals("GET")) {
+                FileReader reader = new FileReader();
                 if (isAnImage()) {
                     responseReturned.append(create200ResponseForImage());
-                    setBodyContent();
+                    requestBody = reader.readFile(request.getPath());
                 } else {
                     responseReturned.append(create200ResponseForTextFile());
-                    setBodyContent();
+                    requestBody = reader.readFile(request.getPath());
                 }
 
             } else if (request.getMethod().equals("PUT")) {
@@ -105,13 +106,6 @@ public class HttpResponse {
 
     private String create404Response() {
         return "HTTP/1.1 404 Not Found\r\n\r\n";
-    }
-    private void setBodyContent() {
-        try {
-            requestBody = readFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private Boolean isAGifFile() {
