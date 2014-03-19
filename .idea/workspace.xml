@@ -63,85 +63,44 @@
     <favorites_list name="JavaServer" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="HttpResponse.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="51" column="53" selection-start="2066" selection-end="2066" vertical-scroll-proportion="-10.153846" vertical-offset="381" max-vertical-offset="1980">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HttpRequestTest.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/HttpRequestTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="53" column="10" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="900">
-                  <folding>
-                    <element signature="e#1297#1313#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="71" column="22" selection-start="2106" selection-end="2106" vertical-scroll-proportion="2.6984127" vertical-offset="0" max-vertical-offset="1155">
-                  <folding>
-                    <element signature="e#1524#1540#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="httpResponseTest.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/httpResponseTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="50" selection-start="840" selection-end="840" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1455">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HttpServerTest.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/HttpServerTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HttpServer.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="34" selection-start="837" selection-end="837" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="795">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="HttpRequestTest.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/HttpRequestTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="56" column="94" selection-start="1860" selection-end="1860" vertical-scroll-proportion="1.7564403" vertical-offset="0" max-vertical-offset="900">
-                  <folding>
-                    <element signature="e#1297#1313#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="HttpResponse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="-0.5769231" vertical-offset="0" max-vertical-offset="1935">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="httpResponseTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/httpResponseTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpServerTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HttpServerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpServer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="34" selection-start="837" selection-end="837" vertical-scroll-proportion="0.80796254" vertical-offset="0" max-vertical-offset="795">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -157,17 +116,18 @@
         <option value="$PROJECT_DIR$/src/httpRequestTest.java" />
         <option value="$PROJECT_DIR$/src/HTTPResponse.java" />
         <option value="$PROJECT_DIR$/src/Server.java" />
-        <option value="$PROJECT_DIR$/src/httpResponseTest.java" />
         <option value="$PROJECT_DIR$/src/HttpServer.java" />
-        <option value="$PROJECT_DIR$/src/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/HttpRequestTest.java" />
+        <option value="$PROJECT_DIR$/src/HttpResponse.java" />
+        <option value="$PROJECT_DIR$/src/httpResponseTest.java" />
+        <option value="$PROJECT_DIR$/src/HttpServerTest.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1276" />
+    <option name="width" value="637" />
     <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -547,7 +507,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1276" height="778" extended-state="0" />
+    <frame x="0" y="22" width="637" height="778" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -567,7 +527,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.022727273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33991536" sideWeight="0.8773819" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33991536" sideWeight="0.8773819" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -816,23 +776,34 @@
         <state line="741" column="16" selection-start="27647" selection-end="27647" vertical-scroll-proportion="0.3325527" vertical-offset="10418" max-vertical-offset="30210" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
+    <entry file="file://$PROJECT_DIR$/src/HttpRequestTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="34" selection-start="837" selection-end="837" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="795">
+        <state line="56" column="94" selection-start="1860" selection-end="1860" vertical-scroll-proportion="1.175644" vertical-offset="248" max-vertical-offset="900">
+          <folding>
+            <element signature="e#1297#1313#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="9" selection-start="522" selection-end="522" vertical-scroll-proportion="0.63492066" vertical-offset="0" max-vertical-offset="1155">
+          <folding>
+            <element signature="e#1524#1540#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="-0.5769231" vertical-offset="0" max-vertical-offset="1935">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/httpResponseTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="50" selection-start="840" selection-end="840" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="53" selection-start="2066" selection-end="2066" vertical-scroll-proportion="-10.153846" vertical-offset="381" max-vertical-offset="1980">
+        <state line="5" column="0" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
           <folding />
         </state>
       </provider>
@@ -844,21 +815,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="22" selection-start="2106" selection-end="2106" vertical-scroll-proportion="2.6984127" vertical-offset="0" max-vertical-offset="1155">
-          <folding>
-            <element signature="e#1524#1540#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpRequestTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="94" selection-start="1860" selection-end="1860" vertical-scroll-proportion="1.7564403" vertical-offset="0" max-vertical-offset="900">
-          <folding>
-            <element signature="e#1297#1313#0" expanded="true" />
-          </folding>
+        <state line="25" column="34" selection-start="837" selection-end="837" vertical-scroll-proportion="0.80796254" vertical-offset="0" max-vertical-offset="795">
+          <folding />
         </state>
       </provider>
     </entry>

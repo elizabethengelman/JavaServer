@@ -8,9 +8,6 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by elizabethengelman on 3/12/14.
- */
 public class HttpResponse {
     HttpRequest request;
     byte[] requestBody;

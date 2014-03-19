@@ -4,9 +4,6 @@ import java.io.ByteArrayInputStream;
 
 import static junit.framework.Assert.assertEquals;
 
-/**
- * Created by elizabethengelman on 3/12/14.
- */
 public class httpResponseTest {
     HttpRequest request;
     HttpResponse response;
