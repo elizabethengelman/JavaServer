@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class HttpRequest {
@@ -51,10 +54,24 @@ public class HttpRequest {
         return decodeCharacters(variableValue);
     }
 
-    public String[] getIndividualParams(){
-        String params = getParametersFromPath();
-        String[] paramPairs = params.split("&");
+    public Map<String, String> getIndividualParams(){
+        Map<String, String> paramPairs = new LinkedHashMap<String, String>();
+        String[] params = getParametersFromPath().split("&");
+        for(String param : params){
+            String varName = getParameterVariableName(param);
+            System.out.println(varName);
+            String varValue = getParameterVariableValue(param);
+            System.out.println(varValue);
+            paramPairs.put(varName, varValue);
+        }
+
         return paramPairs;
+    }
+
+    public HashMap<String, String> getIndParams(){
+        String params = getParametersFromPath();
+
+        return null;
     }
 
     public String decodeCharacters(String value){

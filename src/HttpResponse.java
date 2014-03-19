@@ -1,7 +1,12 @@
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by elizabethengelman on 3/12/14.
@@ -44,11 +49,17 @@ public class HttpResponse {
             request.setPath("/");
         } else if (request.getPath().contains("/parameters")) {
             responseReturned.append(create200Response());
-            String[] params = request.getIndividualParams();
+            Map<String, String> params = request.getIndividualParams();
             String tempBody = new String();
-            for (String param : params) {
-                tempBody += request.getParameterVariableName(param) + " = " + request.getParameterVariableValue(param) + "\n";
+            Iterator it = params.entrySet().iterator();
+            while(it.hasNext()){
+                Map.Entry pairs = (Map.Entry)it.next();
+                tempBody += pairs.getKey() + " = " + pairs.getValue() + "\n";
+                it.remove();
             }
+
+
+
             System.out.println("this is tempBody: " + tempBody);
             requestBody = tempBody.getBytes();
         } else {
