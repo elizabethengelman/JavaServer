@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 
 import static junit.framework.Assert.assertEquals;
 
-public class httpResponseTest {
+public class HttpResponseTest {
     HttpRequest request;
     HttpResponse response;
 

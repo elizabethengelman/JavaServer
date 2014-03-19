@@ -20,15 +20,15 @@ public class HttpResponse {
     public String createResponse() {
 
         if (request.getPath().equals("/")) {
-            responseReturned.append(create200Response());
+            responseReturned.append(create200ResponseWithNoHeaders());
             requestBody = new byte[0];
         } else if (new File("../cob_spec/public" + request.getPath()).exists()) {
             if (request.getMethod().equals("GET")) {
                 if (isAnImage()) {
-                    responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
+                    responseReturned.append(create200ResponseForImage());
                     setBodyContent();
                 } else {
-                    responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n");
+                    responseReturned.append(create200ResponseForTextFile());
                     setBodyContent();
                 }
 
@@ -38,14 +38,14 @@ public class HttpResponse {
                 responseReturned.append(create405Response());
             }
         } else if (request.getPath().equals("/form")) {
-            responseReturned.append(create200Response());
+            responseReturned.append(create200ResponseWithNoHeaders());
         } else if (request.getPath().equals("/method_options")) {
-            responseReturned.append("HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n");
+            responseReturned.append(create200ResponseForOptionsMethod());
         } else if (request.getPath().equals("/redirect")) {
-            responseReturned.append("HTTP/1.1 307\r\nLocation: http://localhost:5000/");
+            responseReturned.append(createRedirectResponse());
             request.setPath("/");
         } else if (request.getPath().contains("/parameters")) {
-            responseReturned.append(create200Response());
+            responseReturned.append(create200ResponseWithNoHeaders());
             Map<String, String> params = request.getIndividualParams();
             String tempBody = new String();
             Iterator it = params.entrySet().iterator();
@@ -56,7 +56,7 @@ public class HttpResponse {
             }
             requestBody = tempBody.getBytes();
         } else {
-            responseReturned.append("HTTP/1.1 404 Not Found\r\n\r\n");
+            responseReturned.append(create404Response());
             requestBody = ("File not found.").getBytes();
         }
         return responseReturned.toString();
@@ -79,14 +79,33 @@ public class HttpResponse {
         return imageFileData;
     }
 
-    private String create200Response() {
+    private String create200ResponseWithNoHeaders() {
         return "HTTP/1.1 200 OK\r\n\r\n";
+    }
+
+    private String create200ResponseForImage() {
+        return "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n";
+    }
+
+    private String create200ResponseForTextFile(){
+        return "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n";
     }
 
     private String create405Response() {
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
 
+    private String create200ResponseForOptionsMethod() {
+        return "HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n";
+    }
+
+    private String createRedirectResponse() {
+        return "HTTP/1.1 307\r\nLocation: http://localhost:5000/";
+    }
+
+    private String create404Response() {
+        return "HTTP/1.1 404 Not Found\r\n\r\n";
+    }
     private void setBodyContent() {
         try {
             requestBody = readFile();
