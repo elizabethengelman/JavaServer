@@ -2,9 +2,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * Created by elizabethengelman on 3/19/14.
- */
 public class FileReader {
 
     public byte[] readFile(String fileName){
@@ -17,6 +14,4 @@ public class FileReader {
         }
         return imageFileData;
     }
-
-
 }

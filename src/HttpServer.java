@@ -6,7 +6,8 @@ public class HttpServer {
     public static class ServerThread extends Thread {
         Socket connectedClient = null;
         HttpRequest request;
-        HttpResponse response;
+//        HttpResponse response;
+        RequestRouter router;
 
         public ServerThread(Socket newConnection) {
             connectedClient = newConnection;
@@ -15,8 +16,9 @@ public class HttpServer {
         public void run() {
             try {
                 request = new HttpRequest(connectedClient.getInputStream());
-                response = new HttpResponse(request);
-                response.createResponse();
+                router = new RequestRouter(request);
+//                response = new HttpResponse(request);
+                router.createResponse();
                 response.sendNewResponse(connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
