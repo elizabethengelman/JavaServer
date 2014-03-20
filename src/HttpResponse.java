@@ -2,9 +2,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -26,10 +23,10 @@ public class HttpResponse {
             if (request.getMethod().equals("GET")) {
                 if (isAnImage()) {
                     responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n");
-                    setBodyContent();
+                    setBodyWithFileContent(request.getPath());
                 } else {
                     responseReturned.append("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n");
-                    setBodyContent();
+                    setBodyWithFileContent(request.getPath());
                 }
 
             } else if (request.getMethod().equals("PUT")) {
@@ -73,12 +70,6 @@ public class HttpResponse {
         }
     }
 
-    private byte[] readFile() throws IOException {
-        Path path = Paths.get("../cob_spec/public" + request.getPath());
-        byte[] imageFileData = Files.readAllBytes(path);
-        return imageFileData;
-    }
-
     private String create200Response() {
         return "HTTP/1.1 200 OK\r\n\r\n";
     }
@@ -87,12 +78,9 @@ public class HttpResponse {
         return "HTTP/1.1 405 Method Not Allowed\r\n";
     }
 
-    private void setBodyContent() {
-        try {
-            requestBody = readFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void setBodyWithFileContent(String filename) {
+        FileReader reader = new FileReader();
+        requestBody = reader.readFile(filename);
     }
 
     private Boolean isAGifFile() {
