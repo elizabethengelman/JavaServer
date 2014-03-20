@@ -42,10 +42,10 @@ public class GetHandler implements Handler {
             generator.setBody();
         }else{
             generator.create404Status();
-            generator.setBody();
+            generator.setBody("File not found".getBytes());
         }
     }
-    
+
     public void sendResponse(OutputStream outputStream) {
         try {
             byte[] requestHeader = generator.header;

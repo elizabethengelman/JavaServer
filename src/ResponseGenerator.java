@@ -7,6 +7,7 @@ public class ResponseGenerator {
 
     public void create200StatusWithoutHeaders() {
         header = "HTTP/1.1 200 OK\r\n\r\n".getBytes();
+
     }
 
     public void create200StatusForImage() {
