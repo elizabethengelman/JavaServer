@@ -22,28 +22,19 @@ public class GetHandler implements Handler {
             generator.create200StatusWithoutHeaders();
             generator.setBody();
         }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
-            if (request.getMethod().equals("GET")) {
-                FileReader reader = new FileReader();
-                if (isAnImage()) {
-                    generator.create200StatusForImage();
-                    generator.setBody(reader.readFile(request.getPath()));
-                } else {
-                    generator.create200StatusForTextFile();
-                    generator.setBody(reader.readFile(request.getPath()));
-                }
+            FileReader reader = new FileReader();
+            if (isAnImage()) {
+                generator.create200StatusForImage();
+                generator.setBody(reader.readFile(request.getPath()));
+            } else {
+                generator.create200StatusForTextFile();
+                generator.setBody(reader.readFile(request.getPath()));
             }
         }else if(request.getPath().equals("/redirect")){
             generator.createRedirectStatus();
             request.setPath("/");
         }else if(request.getPath().contains("/parameters")){
-            Map<String, String> params = request.getIndividualParams();
-            String tempBody = new String();
-            Iterator it = params.entrySet().iterator();
-            while(it.hasNext()){
-                Map.Entry pairs = (Map.Entry)it.next();
-                tempBody += pairs.getKey() + " = " + pairs.getValue() + "\n";
-                it.remove();
-            }
+            String tempBody = iterateThroughParameters();
             generator.create200StatusWithoutHeaders();
             generator.setBody(tempBody.getBytes());
         }else if(request.getPath().equals("/method_options")){
@@ -54,7 +45,7 @@ public class GetHandler implements Handler {
             generator.setBody();
         }
     }
-
+    
     public void sendResponse(OutputStream outputStream) {
         try {
             byte[] requestHeader = generator.header;
@@ -94,11 +85,23 @@ public class GetHandler implements Handler {
         return outcome;
     }
 
-    public Boolean isAnImage() {
+    private Boolean isAnImage() {
         if (isAGifFile() || isAJpegFile() || isAPngFile()) {
             return true;
         } else {
             return false;
         }
+    }
+
+    private String iterateThroughParameters(){
+        Map<String, String> params = request.getIndividualParams();
+        String tempBody = new String();
+        Iterator it = params.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry pairs = (Map.Entry)it.next();
+            tempBody += pairs.getKey() + " = " + pairs.getValue() + "\n";
+            it.remove();
+        }
+        return tempBody;
     }
 }
