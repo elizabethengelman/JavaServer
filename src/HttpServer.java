@@ -18,7 +18,7 @@ public class HttpServer {
                 request = new HttpRequest(connectedClient.getInputStream());
                 router = new RequestRouter(request);
                 handler = router.routeToHandler(); // the handler takes care of asking the generator to create the status
-                                        // line and get the body of the request
+                                                    // line and get the body of the request
                 handler.createResponse();
                 handler.sendResponse(connectedClient.getOutputStream()); // this sends the response - maybe it needs the output stream?
             } catch (IOException e) {

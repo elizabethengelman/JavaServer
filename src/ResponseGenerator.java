@@ -34,7 +34,7 @@ public class ResponseGenerator {
     }
 
     public void setBody(){ //if there is no body
-        body = null;
+        body = "".getBytes();
     }
 
     public void setBody(byte[] bodyContent) { // if there is body content
