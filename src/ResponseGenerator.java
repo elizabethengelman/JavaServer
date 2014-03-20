@@ -4,7 +4,6 @@
 public class ResponseGenerator {
     byte[] header;
     byte[] body;
-    byte[] request;
 
     public void create200StatusWithoutHeaders() {
         header = "HTTP/1.1 200 OK\r\n\r\n".getBytes();
@@ -27,7 +26,7 @@ public class ResponseGenerator {
     }
 
     public void createRedirectStatus() {
-        header = "HTTP/1.1 307\r\nLocation: http://localhost:5000/".getBytes();
+        header = "HTTP/1.1 307 Temporary Redirect\r\nLocation: http://localhost:5000/".getBytes();
     }
 
     public void create404Status() {

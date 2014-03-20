@@ -5,7 +5,6 @@ public class RequestRouter {
     HttpRequest request;
     public RequestRouter(HttpRequest req){
         request = req;
-
     }
 
     public Handler routeToHandler(){
@@ -17,8 +16,7 @@ public class RequestRouter {
         }else if(request.getMethod().equals("POST")){
             handler = new PostHandler(request);
         }else{
-            //send to otherHandler
-            handler = new GetHandler(request); // change to Other handler??????
+            handler = new GetHandler(request);
         }
         return handler;
     }

@@ -18,7 +18,6 @@ public class GetHandler implements Handler {
     }
 
     public void createResponse() {
-        System.out.println("this is the path" + request.getPath());
         if (request.getPath().equals("/")) {
             generator.create200StatusWithoutHeaders();
             generator.setBody();
@@ -33,7 +32,6 @@ public class GetHandler implements Handler {
                     generator.setBody(reader.readFile(request.getPath()));
                 }
             }
-
         }else if(request.getPath().equals("/redirect")){
             generator.createRedirectStatus();
             request.setPath("/");
