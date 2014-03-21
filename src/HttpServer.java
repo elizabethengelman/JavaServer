@@ -6,7 +6,8 @@ public class HttpServer {
     public static class ServerThread extends Thread {
         Socket connectedClient = null;
         HttpRequest request;
-        HttpResponse response;
+        RequestRouter router;
+        Handler handler;
 
         public ServerThread(Socket newConnection) {
             connectedClient = newConnection;
@@ -15,9 +16,11 @@ public class HttpServer {
         public void run() {
             try {
                 request = new HttpRequest(connectedClient.getInputStream());
-                response = new HttpResponse(request);
-                response.createResponse();
-                response.sendNewResponse(connectedClient.getOutputStream());
+                router = new RequestRouter(request);
+                handler = router.routeToHandler(); // the handler takes care of asking the generator to create the status
+                                                    // line and get the body of the request
+                handler.createResponse();
+                handler.sendResponse(connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
             }
