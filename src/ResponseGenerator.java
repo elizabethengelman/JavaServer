@@ -1,3 +1,5 @@
+import java.util.Date;
+
 /**
  * Created by elizabethengelman on 3/20/14.
  */
@@ -34,6 +36,12 @@ public class ResponseGenerator {
         header = "HTTP/1.1 404 Not Found\r\n\r\n".getBytes();
     }
 
+    public void create206Status(String contentSize){
+        Date date = new Date();
+        header = ("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes 0-4/" + contentSize+"\nDate: " + date.toString() + "\nContent-Length: 4\r\n\r\n").getBytes();
+        System.out.println(date.toString());
+        System.out.println("content size: " + contentSize);
+    }
     public void setBody(){ //if there is no body
         body = "".getBytes();
     }

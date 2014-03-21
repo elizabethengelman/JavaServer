@@ -7,18 +7,31 @@ import java.util.Map;
 public class HttpRequest {
     InputStream inputStream;
     BufferedReader inputFromClient;
-    String requestString;
+    String requestString = "";
 
     public HttpRequest(InputStream is){
         inputStream = is;
         inputFromClient = new BufferedReader(new InputStreamReader(inputStream));
         try{
-            requestString = inputFromClient.readLine();
+            String newRequestString = inputFromClient.readLine();
+            requestString += newRequestString;
+
+            while (!isEndOfHeader(newRequestString)){
+                System.out.println(newRequestString);
+                newRequestString = inputFromClient.readLine();
+                requestString += newRequestString;
+            }
+            System.out.println(requestString);
         }
         catch(IOException e){
             System.out.println(e);
         }
     }
+
+    private boolean isEndOfHeader(String newRequestString) {
+        return newRequestString == null || newRequestString.equals("") || newRequestString.contains("\r\n");
+    }
+
     public String getMethod(){
         return requestString.split(" ")[0];
     }

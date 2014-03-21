@@ -26,9 +26,14 @@ public class GetHandler implements Handler {
             if (isAnImage()) {
                 generator.create200StatusForImage();
                 generator.setBody(reader.readFile(request.getPath()));
-            } else {
-                generator.create200StatusForTextFile();
-                generator.setBody(reader.readFile(request.getPath()));
+            }else {
+                if (request.getPath().equals("/partial_content.txt")){
+                    generator.setBody(reader.readFile(request.getPath()));
+                    generator.create206Status(Integer.toString(generator.body.length));
+                }else{
+                    generator.create200StatusForTextFile();
+                    generator.setBody(reader.readFile(request.getPath()));
+                }
             }
         }else if(request.getPath().equals("/redirect")){
             generator.createRedirectStatus();
