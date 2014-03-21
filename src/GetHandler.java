@@ -19,8 +19,7 @@ public class GetHandler implements Handler {
 
     public void createResponse() {
         if (request.getPath().equals("/")) {
-            DirectoryBuilder directoryBuilder = new DirectoryBuilder();
-            String namesOfFiles =  directoryBuilder.getNamesOfFiles();
+            String namesOfFiles = getDirectoryFileNames();
             generator.create200StatusWithoutHeaders();
             generator.setBody(namesOfFiles.getBytes());
         }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
@@ -51,6 +50,11 @@ public class GetHandler implements Handler {
             generator.create404Status();
             generator.setBody("File not found".getBytes());
         }
+    }
+
+    private String getDirectoryFileNames() {
+        DirectoryBuilder directoryBuilder = new DirectoryBuilder();
+        return directoryBuilder.getNamesOfFiles();
     }
 
     public void sendResponse(OutputStream outputStream) {
