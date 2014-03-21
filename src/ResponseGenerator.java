@@ -39,8 +39,6 @@ public class ResponseGenerator {
     public void create206Status(String contentSize){
         Date date = new Date();
         header = ("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes 0-4/" + contentSize+"\nDate: " + date.toString() + "\nContent-Length: 4\r\n\r\n").getBytes();
-        System.out.println(date.toString());
-        System.out.println("content size: " + contentSize);
     }
     public void setBody(){ //if there is no body
         body = "".getBytes();
