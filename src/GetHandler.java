@@ -19,8 +19,10 @@ public class GetHandler implements Handler {
 
     public void createResponse() {
         if (request.getPath().equals("/")) {
+            DirectoryBuilder directoryBuilder = new DirectoryBuilder();
+            String namesOfFiles =  directoryBuilder.getNamesOfFiles();
             generator.create200StatusWithoutHeaders();
-            generator.setBody();
+            generator.setBody(namesOfFiles.getBytes());
         }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
