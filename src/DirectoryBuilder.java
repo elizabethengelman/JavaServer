@@ -18,11 +18,11 @@ public class DirectoryBuilder {
         return files;
     }
 
-    public String getNamesOfFiles(){
+    public String getLinksOfFiles(){
         List<File> filesInDirectory = getFilesInCurrentDirectory();
         String filesAsList = "";
         for (File file: filesInDirectory){
-            filesAsList += file.getName() + "\n";
+            filesAsList += "<a href=/" + file.getName()+ ">" + file.getName() + "</a><br>";
         }
         System.out.println(filesAsList);
         return filesAsList;

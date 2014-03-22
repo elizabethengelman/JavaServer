@@ -8,13 +8,16 @@ import static junit.framework.Assert.assertEquals;
 public class DirectoryBuilderTest {
    @Test
    public void testGetFilesInCurrentDirectory(){
-       String currentFilesString = "file1\n" +"file2\n" +"image.gif\n" +
-               "image.jpeg\n" +"image.png\n" +
-               "partial_content.txt\n" +"text-file.txt\n";
+       String fileNamesString = "<a href=/file1>file1</a><br>"+
+               "<a href=/file2>file2</a><br>"+
+               "<a href=/image.gif>image.gif</a><br>"+
+               "<a href=/image.jpeg>image.jpeg</a><br>" +
+               "<a href=/image.png>image.png</a><br>" +
+               "<a href=/partial_content.txt>partial_content.txt</a><br>" +
+               "<a href=/text-file.txt>text-file.txt</a><br>";
        DirectoryBuilder directoryBuilder = new DirectoryBuilder();
-       assertEquals(currentFilesString, directoryBuilder.getNamesOfFiles());
+       assertEquals(fileNamesString, directoryBuilder.getLinksOfFiles());
    }
-
-
-
 }
+
+// foo.split("[?]")

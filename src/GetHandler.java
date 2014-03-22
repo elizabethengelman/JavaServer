@@ -54,7 +54,7 @@ public class GetHandler implements Handler {
 
     private String getDirectoryFileNames() {
         DirectoryBuilder directoryBuilder = new DirectoryBuilder();
-        return directoryBuilder.getNamesOfFiles();
+        return directoryBuilder.getLinksOfFiles();
     }
 
     public void sendResponse(OutputStream outputStream) {
