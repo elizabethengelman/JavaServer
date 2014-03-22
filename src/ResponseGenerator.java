@@ -8,7 +8,7 @@ public class ResponseGenerator {
     byte[] body;
 
     public void create200StatusWithoutHeaders() {
-        header = "HTTP/1.1 200 OK\r\n\r\n".getBytes();
+        header = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n".getBytes();
 
     }
 
