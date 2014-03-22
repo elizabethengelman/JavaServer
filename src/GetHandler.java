@@ -46,6 +46,15 @@ public class GetHandler implements Handler {
         }else if(request.getPath().equals("/method_options")){
             generator.create200StatusForOptionsMethod();
             generator.setBody();
+        }else if(request.getPath().equals("/logs")){
+            Authenticator auth = new Authenticator(request);
+            if (auth.authenticated()){
+                generator.create200StatusWithoutHeaders();
+                generator.setBody();
+            }else{
+                generator.create401Status();
+                generator.setBody("Authentication required".getBytes());
+            }
         }else{
             generator.create404Status();
             generator.setBody("File not found".getBytes());
