@@ -40,6 +40,11 @@ public class ResponseGenerator {
         Date date = new Date();
         header = ("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes 0-4/" + contentSize+"\nDate: " + date.toString() + "\nContent-Length: 4\r\n\r\n").getBytes();
     }
+
+    public void create401Status(){
+        header = "HTTP/1.1 401 Unauthorized\r\n\r\n".getBytes();
+    }
+
     public void setBody(){ //if there is no body
         body = "".getBytes();
     }

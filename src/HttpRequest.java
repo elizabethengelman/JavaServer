@@ -1,4 +1,9 @@
-import java.io.*;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -46,6 +51,19 @@ public class HttpRequest {
 
     public String getHttpVersion(){
         return requestString.split(" ")[2];
+    }
+
+    public String authorizationHeaderInfo(){
+        if (requestString.contains("Authorization")){
+            String s = requestString.substring(requestString.indexOf("Authorization"), requestString.indexOf("Connection"));
+            String authInfo = s.substring(s.indexOf("Basic") + 6);
+            Base64 decoder = new Base64();
+            byte[] decodedBytes = decoder.decode(authInfo);
+            System.out.println(new String(decodedBytes));
+            return new String(decodedBytes);
+        }else{
+            return "";
+        }
     }
 
     private String getParametersFromPath(){
