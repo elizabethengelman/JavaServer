@@ -22,6 +22,16 @@ public class GetHandler implements Handler {
             String namesOfFiles = getDirectoryFileNames();
             generator.create200StatusWithoutHeaders();
             generator.setBody(namesOfFiles.getBytes());
+        }else if(request.getPath().equals("/logs")){
+            Authenticator auth = new Authenticator(request);
+            FileReader reader = new FileReader();
+            if (auth.authenticated()){
+                generator.create200StatusWithoutHeaders();
+                generator.setBody(reader.readFile(request.getPath()));
+            }else{
+                generator.create401Status();
+                generator.setBody("Authentication required".getBytes());
+            }
         }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
@@ -46,15 +56,6 @@ public class GetHandler implements Handler {
         }else if(request.getPath().equals("/method_options")){
             generator.create200StatusForOptionsMethod();
             generator.setBody();
-        }else if(request.getPath().equals("/logs")){
-            Authenticator auth = new Authenticator(request);
-            if (auth.authenticated()){
-                generator.create200StatusWithoutHeaders();
-                generator.setBody("GET /log HTTP/1.1\n\"PUT /these HTTP/1.1\n HEAD /requests HTTP/1.1".getBytes());
-            }else{
-                generator.create401Status();
-                generator.setBody("Authentication required".getBytes());
-            }
         }else if (request.getPath().equals("/form")){
             generator.create200StatusWithoutHeaders();
             generator.setBody();

@@ -16,6 +16,7 @@ public class HttpServer {
         public void run() {
             try {
                 request = new HttpRequest(connectedClient.getInputStream());
+                logRequest(request.requestString);
                 router = new RequestRouter(request);
                 handler = router.routeToHandler(); // the handler takes care of asking the generator to create the status
                                                     // line and get the body of the request
@@ -49,5 +50,10 @@ public class HttpServer {
         } finally {
             serverSocket.close();
         }
+    }
+
+    public static void logRequest(String stringToLog){
+        RequestLogger logger = new RequestLogger();
+        logger.logRequest(stringToLog);
     }
 }
