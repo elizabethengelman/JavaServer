@@ -1,7 +1,4 @@
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Created by elizabethengelman on 3/20/14.
@@ -19,12 +16,29 @@ public class PutHandler implements Handler {
         if (request.getPath().equals("/")) {
             generator.create200StatusWithoutHeaders();
             generator.setBody();
-        }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
-            generator.create405Status();
-            generator.setBody();
         }else if(request.getPath().equals("/form")){
             generator.create200StatusWithoutHeaders();
             generator.setBody();
+            try{
+                PrintWriter writer = new PrintWriter("../cob_spec/public" + request.getPath(), "UTF-8");
+                writer.println("data = heathcliff");
+                writer.close();
+            }
+            catch(IOException e){
+                System.out.println("The file writing exception: " + e);
+            }
+        }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
+            generator.create405Status();
+            generator.setBody();
+        }else if(request.getPath().equals("/form")){ //REDUNDANT - DELETE?
+            generator.create200StatusWithoutHeaders();
+            generator.setBody();
+        }else if (request.getPath().equals("/logs")){
+            Authenticator auth = new Authenticator(request);
+//            if (auth.authenticated()){
+            generator.create200StatusWithoutHeaders();
+            generator.setBody("PUT /these HTTP/1.1".getBytes());
+//            }
         }else{
             generator.create404Status();
             generator.setBody();

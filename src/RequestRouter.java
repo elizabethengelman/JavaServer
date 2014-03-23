@@ -15,7 +15,10 @@ public class RequestRouter {
             handler = new PutHandler(request);
         }else if(request.getMethod().equals("POST")){
             handler = new PostHandler(request);
-        }else{
+        }else if(request.getMethod().equals("DELETE")){
+            handler = new DeleteHandler(request);
+        }
+        else{
             handler = new GetHandler(request);
         }
         return handler;
