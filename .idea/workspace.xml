@@ -67,7 +67,7 @@
       <file leaf-file-name="GetHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GetHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="49" selection-start="2189" selection-end="2189" vertical-scroll-proportion="0.5048544" vertical-offset="497" max-vertical-offset="1965">
+            <state line="52" column="78" selection-start="2218" selection-end="2218" vertical-scroll-proportion="0.29126215" vertical-offset="585" max-vertical-offset="1965">
               <folding />
             </state>
           </provider>
@@ -85,7 +85,7 @@
       <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="9" selection-start="903" selection-end="913" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
+            <state line="52" column="5" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="1530">
               <folding />
             </state>
           </provider>
@@ -982,14 +982,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="9" selection-start="903" selection-end="913" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
+        <state line="52" column="5" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="1530">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GetHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="49" selection-start="2189" selection-end="2189" vertical-scroll-proportion="0.5048544" vertical-offset="497" max-vertical-offset="1965">
+        <state line="52" column="78" selection-start="2218" selection-end="2218" vertical-scroll-proportion="0.29126215" vertical-offset="585" max-vertical-offset="1965">
           <folding />
         </state>
       </provider>
