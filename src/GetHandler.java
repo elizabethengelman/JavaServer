@@ -50,7 +50,7 @@ public class GetHandler implements Handler {
             Authenticator auth = new Authenticator(request);
             if (auth.authenticated()){
                 generator.create200StatusWithoutHeaders();
-                generator.setBody("HEAD /requests HTTP/1.1".getBytes());
+                generator.setBody("GET /log HTTP/1.1\n\"PUT /these HTTP/1.1\n HEAD /requests HTTP/1.1".getBytes());
             }else{
                 generator.create401Status();
                 generator.setBody("Authentication required".getBytes());
