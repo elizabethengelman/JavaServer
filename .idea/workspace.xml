@@ -64,19 +64,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PostHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="23" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="795">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GetHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GetHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="40" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.3856041" vertical-offset="390" max-vertical-offset="1920">
+            <state line="52" column="49" selection-start="2189" selection-end="2189" vertical-scroll-proportion="0.5048544" vertical-offset="497" max-vertical-offset="1965">
               <folding />
             </state>
           </provider>
@@ -85,7 +76,7 @@
       <file leaf-file-name="Authenticator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Authenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="29" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+            <state line="21" column="0" selection-start="457" selection-end="457" vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="405">
               <folding />
             </state>
           </provider>
@@ -94,7 +85,16 @@
       <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="5" selection-start="1582" selection-end="1582" vertical-scroll-proportion="0.0" vertical-offset="526" max-vertical-offset="1545">
+            <state line="28" column="9" selection-start="903" selection-end="913" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestRouter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="49" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
               <folding />
             </state>
           </provider>
@@ -103,7 +103,16 @@
       <file leaf-file-name="ResponseGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ResponseGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="43" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="945">
+            <state line="57" column="1" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="945">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PutHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="14" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="975">
               <folding />
             </state>
           </provider>
@@ -112,16 +121,7 @@
       <file leaf-file-name="DirectoryBuilder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DirectoryBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="9" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="540">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileReader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FileReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="53" selection-start="292" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+            <state line="25" column="9" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="585">
               <folding />
             </state>
           </provider>
@@ -149,27 +149,29 @@
         <option value="$PROJECT_DIR$/src/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/ResponseSender.java" />
         <option value="$PROJECT_DIR$/src/Handler.java" />
-        <option value="$PROJECT_DIR$/src/PutHandler.java" />
-        <option value="$PROJECT_DIR$/src/PostHandler.java" />
         <option value="$PROJECT_DIR$/src/OptionsHandler.java" />
         <option value="$PROJECT_DIR$/Tests/ResponseGeneratorTest.java" />
         <option value="$PROJECT_DIR$/src/httpResponseTest.java" />
         <option value="$PROJECT_DIR$/Tests/RequestRouterTest.java" />
         <option value="$PROJECT_DIR$/Tests/GetHandlerTest.java" />
         <option value="$PROJECT_DIR$/src/HttpServer.java" />
-        <option value="$PROJECT_DIR$/src/RequestRouter.java" />
         <option value="$PROJECT_DIR$/src/DirectoryBuilder.java" />
         <option value="$PROJECT_DIR$/Tests/DirectoryBuilderTest.java" />
         <option value="$PROJECT_DIR$/src/ResponseGenerator.java" />
         <option value="$PROJECT_DIR$/src/Authenticator.java" />
+        <option value="$PROJECT_DIR$/src/PostHandler.java" />
+        <option value="$PROJECT_DIR$/src/RequestRouter.java" />
+        <option value="$PROJECT_DIR$/src/DeleteHandler.java" />
+        <option value="$PROJECT_DIR$/src/PutHandler.java" />
         <option value="$PROJECT_DIR$/src/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/GetHandler.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="604" />
     <option name="y" value="22" />
-    <option name="width" value="637" />
+    <option name="width" value="603" />
     <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -198,7 +200,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -248,6 +249,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -430,6 +432,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -455,19 +470,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -571,7 +573,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="637" height="778" extended-state="6" />
+    <frame x="604" y="22" width="603" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -584,14 +586,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32722145" sideWeight="0.122618064" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32531" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32440057" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24489796" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32863188" sideWeight="0.8773819" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32863188" sideWeight="0.8773819" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -615,13 +617,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325811" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28056425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22849083" sideWeight="0.8773819" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -645,13 +647,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="23" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GetHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="84" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="1770">
@@ -908,22 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="23" selection-start="239" selection-end="239" vertical-scroll-proportion="0.33039647" vertical-offset="0" max-vertical-offset="454">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="33" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0" vertical-offset="246" max-vertical-offset="765">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tests/RequestRouterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="5" selection-start="957" selection-end="1203" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
@@ -945,13 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="23" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="197" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/FileReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="53" selection-start="292" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
@@ -966,30 +938,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="13" selection-start="612" selection-end="935" vertical-scroll-proportion="0.0" vertical-offset="226" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ResponseGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="43" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="945">
+        <state line="57" column="1" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DeleteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="13" selection-start="702" selection-end="702" vertical-scroll-proportion="0.0" vertical-offset="174" max-vertical-offset="750">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Authenticator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="29" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+        <state line="21" column="0" selection-start="457" selection-end="457" vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="14" selection-start="1564" selection-end="1564" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="49" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="5" selection-start="1582" selection-end="1582" vertical-scroll-proportion="0.0" vertical-offset="526" max-vertical-offset="1545">
+        <state line="28" column="9" selection-start="903" selection-end="913" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1530">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GetHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="40" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.3856041" vertical-offset="390" max-vertical-offset="1920">
+        <state line="52" column="49" selection-start="2189" selection-end="2189" vertical-scroll-proportion="0.5048544" vertical-offset="497" max-vertical-offset="1965">
           <folding />
         </state>
       </provider>

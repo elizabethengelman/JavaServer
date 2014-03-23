@@ -1,35 +1,29 @@
 import java.io.*;
 
 /**
- * Created by elizabethengelman on 3/20/14.
+ * Created by elizabethengelman on 3/23/14.
  */
-public class PostHandler implements Handler{
+public class DeleteHandler implements Handler {
+
     HttpRequest request;
     ResponseGenerator generator;
 
-    public PostHandler(HttpRequest req){
+    public DeleteHandler(HttpRequest req){
         request = req;
         generator = new ResponseGenerator();
     }
 
     public void createResponse() {
-        if (request.getPath().equals("/")) {
-            generator.create200StatusWithoutHeaders();
-            generator.setBody();
-        }else if(request.getPath().equals("/form")){
+        File file;
+        if ((file = new File("../cob_spec/public" + request.getPath())).exists()) {
             generator.create200StatusWithoutHeaders();
             generator.setBody();
             try{
-                PrintWriter writer = new PrintWriter("../cob_spec/public" + request.getPath(), "UTF-8");
-                writer.println("data = cosby");
-                writer.close();
+                file.delete();
             }
-            catch(IOException e){
+            catch(Exception e){
                 System.out.println("The file writing exception: " + e);
             }
-        }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
-            generator.create405Status();
-            generator.setBody();
         }else{
             generator.create404Status();
             generator.setBody();
@@ -47,5 +41,4 @@ public class PostHandler implements Handler{
             System.out.println(e);
         }
     }
-
 }

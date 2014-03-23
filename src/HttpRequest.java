@@ -26,7 +26,6 @@ public class HttpRequest {
                 newRequestString = inputFromClient.readLine();
                 requestString += newRequestString;
             }
-            System.out.println(requestString);
         }
         catch(IOException e){
             System.out.println(e);
