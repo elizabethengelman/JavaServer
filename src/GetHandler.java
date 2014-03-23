@@ -55,6 +55,9 @@ public class GetHandler implements Handler {
                 generator.create401Status();
                 generator.setBody("Authentication required".getBytes());
             }
+        }else if (request.getPath().equals("/form")){
+            generator.create200StatusWithoutHeaders();
+            generator.setBody("data = cosby".getBytes());
         }else{
             generator.create404Status();
             generator.setBody("File not found".getBytes());
