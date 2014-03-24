@@ -27,7 +27,4 @@ public class DirectoryBuilder {
         System.out.println(filesAsList);
         return filesAsList;
     }
-
-
-
 }

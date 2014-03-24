@@ -9,7 +9,6 @@ public class ResponseGenerator {
 
     public void create200StatusWithoutHeaders() {
         header = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n".getBytes();
-
     }
 
     public void create200StatusForImage(String imageType) {
@@ -38,7 +37,8 @@ public class ResponseGenerator {
 
     public void create206Status(String contentSize){
         Date date = new Date();
-        header = ("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes 0-4/" + contentSize+"\nDate: " + date.toString() + "\nContent-Length: 4\r\n\r\n").getBytes();
+        header = ("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes 0-4/" + contentSize
+                   +"\nDate: " + date.toString() + "\nContent-Length: 4\r\n\r\n").getBytes();
     }
 
     public void create401Status(){
@@ -52,7 +52,6 @@ public class ResponseGenerator {
     public void setBody(byte[] bodyContent) { // if there is body content
         body = bodyContent;
     }
-
 
 
 }

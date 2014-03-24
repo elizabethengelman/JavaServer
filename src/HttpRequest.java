@@ -98,6 +98,7 @@ public class HttpRequest {
                                    {"%24", "$"}, {"%5B", "["}, {"%3A", ":"},
                                    {"%22", "\""}, {"%3F", "?"}, {"%26", "&"},
                                    {"%5D", "]"}};
+
         String decodedValue = value;
         for(String[] replacement : replacements){
             decodedValue = decodedValue.replace(replacement[0], replacement[1]);
