@@ -19,16 +19,16 @@ public class HttpRequest {
         try{
             String newRequestString = inputFromClient.readLine();
             requestString += newRequestString;
-
             while (!isEndOfHeader(newRequestString)){
-                System.out.println(newRequestString);
-                newRequestString = inputFromClient.readLine();
-                requestString += newRequestString;
+                if ((newRequestString = inputFromClient.readLine()) != null){
+                    requestString += newRequestString;
+                }
             }
         }
         catch(IOException e){
             System.out.println(e);
         }
+        System.out.println(requestString);
     }
 
     private boolean isEndOfHeader(String newRequestString) {
@@ -48,6 +48,7 @@ public class HttpRequest {
     }
 
     public String getHttpVersion(){
+        System.out.println("this os the current request String: " + requestString);
         return requestString.split(" ")[2];
     }
 
