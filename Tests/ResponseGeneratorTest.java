@@ -21,7 +21,7 @@ public class ResponseGeneratorTest {
 
     @Test
     public void test200ForImage(){
-        generator.create200StatusForImage();
+        generator.create200StatusForImage("image/png");
         assertArrayEquals("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n".getBytes(), generator.header);
     }
 

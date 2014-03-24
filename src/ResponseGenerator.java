@@ -12,8 +12,8 @@ public class ResponseGenerator {
 
     }
 
-    public void create200StatusForImage() {
-        header = "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n".getBytes();
+    public void create200StatusForImage(String imageType) {
+        header = ("HTTP/1.1 200 OK\r\nContent-Type: " + imageType + "\r\n\r\n").getBytes();
     }
 
     public void create200StatusForTextFile() {

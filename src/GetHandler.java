@@ -11,6 +11,7 @@ import java.util.Map;
 public class GetHandler implements Handler {
     HttpRequest request;
     ResponseGenerator generator;
+    String typeOfImage;
 
     public GetHandler(HttpRequest req){
         request = req;
@@ -35,7 +36,8 @@ public class GetHandler implements Handler {
         }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
-                generator.create200StatusForImage();
+                setTypeOfImage();
+                generator.create200StatusForImage(typeOfImage);
                 generator.setBody(reader.readFile(request.getPath()));
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
@@ -127,5 +129,15 @@ public class GetHandler implements Handler {
             it.remove();
         }
         return tempBody;
+    }
+
+    private void setTypeOfImage(){
+        if (isAGifFile()){
+            typeOfImage = "image/gif";
+        }else if (isAJpegFile()){
+            typeOfImage = "image/jpg";
+        }else if (isAPngFile()){
+            typeOfImage = "image/png";
+        }
     }
 }
