@@ -48,13 +48,23 @@ public class HttpRequest {
     }
 
     public String getHttpVersion(){
-        System.out.println("this os the current request String: " + requestString);
         return requestString.split(" ")[2];
+    }
+
+    public String getRange(){
+        if (requestString.contains("Range")){
+            String s = requestString.substring(requestString.indexOf("Range"), requestString.indexOf("Connection"));
+            String range = s.substring(s.indexOf("bytes") + 6);
+            System.out.println(range);
+            return range;
+        }else{
+            return "";
+        }
     }
 
     public String authorizationHeaderInfo(){
         if (requestString.contains("Authorization")){
-            String s = requestString.substring(requestString.indexOf("Authorization"), requestString.indexOf("Connection"));
+            String s = requestString.substring(requestString.indexOf("Authorization"), requestString.indexOf("Connection"));//this needs to change
             String authInfo = s.substring(s.indexOf("Basic") + 6);
             Base64 decoder = new Base64();
             byte[] decodedBytes = decoder.decode(authInfo);
@@ -92,7 +102,6 @@ public class HttpRequest {
     }
 
     public String decodeCharacters(String value){
-
         String[][] replacements = {{"%20", " "}, {"%3C", "<"}, {"%2C", ","},
                                    {"%3E", ">"}, {"%3D", "="}, {"%3B", ";"},
                                    {"%2B", "+"}, {"%40", "@"}, {"%23", "#"},

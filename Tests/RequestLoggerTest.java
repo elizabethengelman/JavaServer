@@ -7,9 +7,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class RequestLoggerTest {
     FileReader reader = new FileReader();
+    RequestLogger reqLog = new RequestLogger();
     @Test
     public void testLogRequest(){
-        RequestLogger reqLog = new RequestLogger();
         reqLog.logRequest("test log entry");
         byte[] log = reader.readFile("/logs");
         String logString = new String(log);

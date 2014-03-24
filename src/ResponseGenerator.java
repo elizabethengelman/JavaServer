@@ -35,10 +35,14 @@ public class ResponseGenerator {
         header = "HTTP/1.1 404 Not Found\r\n\r\n".getBytes();
     }
 
-    public void create206Status(String contentSize){
+    public void create206Status(String contentSize, String range, String newContentLength){
         Date date = new Date();
-        header = ("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes 0-4/" + contentSize
-                   +"\nDate: " + date.toString() + "\nContent-Length: 4\r\n\r\n").getBytes();
+
+        String newHeader=("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes " + range + "/" + contentSize
+                +"\nDate: " + date.toString() + "\nContent-Length: " + newContentLength + "\r\n\r\n");
+        System.out.println(newHeader);
+        header = newHeader.getBytes();
+
     }
 
     public void create401Status(){
@@ -52,7 +56,5 @@ public class ResponseGenerator {
     public void setBody(byte[] bodyContent) { // if there is body content
         body = bodyContent;
     }
-
-
 }
 

@@ -42,7 +42,9 @@ public class GetHandler implements Handler {
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
                     generator.setBody(reader.readFile(request.getPath()));
-                    generator.create206Status(Integer.toString(generator.body.length));
+                    String range = request.getRange();
+                    String newContentLength = range.substring(range.indexOf("-")+1);
+                    generator.create206Status(Integer.toString(generator.body.length), range, newContentLength);
                 }else{
                     generator.create200StatusForTextFile();
                     generator.setBody(reader.readFile(request.getPath()));
