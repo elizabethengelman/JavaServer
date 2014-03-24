@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URLDecoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -91,14 +90,26 @@ public class HttpRequest {
         return paramPairs;
     }
 
-    public String decodeCharacters(String value) {
-        String result = new String();
-        try{
-            result = URLDecoder.decode(value, "UTF-8");
+    public String decodeCharacters(String value){
+
+        String[][] replacements = {{"%20", " "}, {"%3C", "<"}, {"%2C", ","},
+                                   {"%3E", ">"}, {"%3D", "="}, {"%3B", ";"},
+                                   {"%2B", "+"}, {"%40", "@"}, {"%23", "#"},
+                                   {"%24", "$"}, {"%5B", "["}, {"%3A", ":"},
+                                   {"%22", "\""}, {"%3F", "?"}, {"%26", "&"},
+                                   {"%5D", "]"}};
+        String decodedValue = value;
+        for(String[] replacement : replacements){
+            decodedValue = decodedValue.replace(replacement[0], replacement[1]);
         }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return result;
+        return decodedValue;
     }
+
+
+
+
+
+
 }
+
+
