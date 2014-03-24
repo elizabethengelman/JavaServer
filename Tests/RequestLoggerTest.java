@@ -11,7 +11,7 @@ public class RequestLoggerTest {
     @Test
     public void testLogRequest(){
         reqLog.logRequest("test log entry");
-        byte[] log = reader.readFile("/logs");
+        byte[] log = reader.readFile("../cob_spec/public/logs");
         String logString = new String(log);
         assertTrue(logString.contains("test log entry"));
     }
