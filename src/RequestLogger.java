@@ -10,8 +10,6 @@ public class RequestLogger {
     public void logRequest(String thingToLog){
         try{
             FileWriter writer = new FileWriter("../cob_spec/public/logs", true);
-
-//            PrintWriter writer =  new PrintWriter("../cob_spec/public/logs", "UTF-8");
             writer.write(thingToLog + "\n\n");
             writer.close();
         }catch(IOException e){

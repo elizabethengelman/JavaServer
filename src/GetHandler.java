@@ -11,6 +11,7 @@ import java.util.Map;
 public class GetHandler implements Handler {
     HttpRequest request;
     ResponseGenerator generator;
+    String typeOfImage;
 
     public GetHandler(HttpRequest req){
         request = req;
@@ -27,7 +28,7 @@ public class GetHandler implements Handler {
             FileReader reader = new FileReader();
             if (auth.authenticated()){
                 generator.create200StatusWithoutHeaders();
-                generator.setBody(reader.readFile(request.getPath()));
+                generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
             }else{
                 generator.create401Status();
                 generator.setBody("Authentication required".getBytes());
@@ -35,15 +36,18 @@ public class GetHandler implements Handler {
         }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
-                generator.create200StatusForImage();
-                generator.setBody(reader.readFile(request.getPath()));
+                setTypeOfImage();
+                generator.create200StatusForImage(typeOfImage);
+                generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
-                    generator.setBody(reader.readFile(request.getPath()));
-                    generator.create206Status(Integer.toString(generator.body.length));
+                    generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                    String range = request.getRange();
+                    String newContentLength = range.substring(range.indexOf("-")+1);
+                    generator.create206Status(Integer.toString(generator.body.length), range, newContentLength);
                 }else{
                     generator.create200StatusForTextFile();
-                    generator.setBody(reader.readFile(request.getPath()));
+                    generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
                 }
             }
         }else if(request.getPath().equals("/redirect")){
@@ -127,5 +131,15 @@ public class GetHandler implements Handler {
             it.remove();
         }
         return tempBody;
+    }
+
+    private void setTypeOfImage(){
+        if (isAGifFile()){
+            typeOfImage = "image/gif";
+        }else if (isAJpegFile()){
+            typeOfImage = "image/jpg";
+        }else if (isAPngFile()){
+            typeOfImage = "image/png";
+        }
     }
 }
