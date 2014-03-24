@@ -37,10 +37,8 @@ public class ResponseGenerator {
 
     public void create206Status(String contentSize, String range, String newContentLength){
         Date date = new Date();
-
         String newHeader=("HTTP/1.1 206 Partial Content\r\nContent-Type: text/plain\nContent-Range: bytes " + range + "/" + contentSize
                 +"\nDate: " + date.toString() + "\nContent-Length: " + newContentLength + "\r\n\r\n");
-        System.out.println(newHeader);
         header = newHeader.getBytes();
 
     }

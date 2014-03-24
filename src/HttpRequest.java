@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
 public class HttpRequest {
     InputStream inputStream;
     BufferedReader inputFromClient;
@@ -28,7 +27,6 @@ public class HttpRequest {
         catch(IOException e){
             System.out.println(e);
         }
-        System.out.println(requestString);
     }
 
     private boolean isEndOfHeader(String newRequestString) {
@@ -55,7 +53,6 @@ public class HttpRequest {
         if (requestString.contains("Range")){
             String s = requestString.substring(requestString.indexOf("Range"), requestString.indexOf("Connection"));
             String range = s.substring(s.indexOf("bytes") + 6);
-            System.out.println(range);
             return range;
         }else{
             return "";
@@ -68,7 +65,6 @@ public class HttpRequest {
             String authInfo = s.substring(s.indexOf("Basic") + 6);
             Base64 decoder = new Base64();
             byte[] decodedBytes = decoder.decode(authInfo);
-            System.out.println(new String(decodedBytes));
             return new String(decodedBytes);
         }else{
             return "";
@@ -115,12 +111,6 @@ public class HttpRequest {
         }
         return decodedValue;
     }
-
-
-
-
-
-
 }
 
 

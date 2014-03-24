@@ -24,7 +24,6 @@ public class DirectoryBuilder {
         for (File file: filesInDirectory){
             filesAsList += "<a href=/" + file.getName()+ ">" + file.getName() + "</a><br>";
         }
-        System.out.println(filesAsList);
         return filesAsList;
     }
 }
