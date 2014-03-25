@@ -13,12 +13,12 @@ public class GetHandler implements Handler {
     ResponseGenerator generator;
     String typeOfImage;
 
-    public GetHandler(HttpRequest req){
-        request = req;
+    public GetHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse() {
+    public void createResponse(HttpRequest httpRequest, String currentDirectory) {
+        request = httpRequest;
         if (request.getPath().equals("/")) {
             String namesOfFiles = getDirectoryFileNames();
             generator.create200StatusWithoutHeaders();
@@ -28,7 +28,7 @@ public class GetHandler implements Handler {
             FileReader reader = new FileReader();
             if (auth.authenticated()){
                 generator.create200StatusWithoutHeaders();
-                generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                generator.setBody(reader.readFile(currentDirectory + request.getPath()));
             }else{
                 generator.create401Status();
                 generator.setBody("Authentication required".getBytes());
@@ -38,16 +38,16 @@ public class GetHandler implements Handler {
             if (isAnImage()) {
                 setTypeOfImage();
                 generator.create200StatusForImage(typeOfImage);
-                generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                generator.setBody(reader.readFile(currentDirectory + request.getPath()));
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
-                    generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                    generator.setBody(reader.readFile(currentDirectory + request.getPath()));
                     String range = request.getRange();
                     String newContentLength = range.substring(range.indexOf("-")+1);
                     generator.create206Status(Integer.toString(generator.body.length), range, newContentLength);
                 }else{
                     generator.create200StatusForTextFile();
-                    generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                    generator.setBody(reader.readFile(currentDirectory + request.getPath()));
                 }
             }
         }else if(request.getPath().equals("/redirect")){

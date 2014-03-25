@@ -11,8 +11,8 @@ public class GetHandlerTest {
 
     private void setUpRequestAndRouter(String requestPath){
         request = new HttpRequest(new ByteArrayInputStream(("GET " + requestPath + " HTTP/1.1").getBytes()));
-        handler = new GetHandler(request);
-        handler.createResponse();
+        handler = new GetHandler();
+//        handler.createResponse();
     }
 
     @Test
