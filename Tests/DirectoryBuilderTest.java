@@ -18,7 +18,7 @@ public class DirectoryBuilderTest {
                "<a href=/logs>logs</a><br>" +
                "<a href=/partial_content.txt>partial_content.txt</a><br>" +
                "<a href=/text-file.txt>text-file.txt</a><br>";
-       DirectoryBuilder directoryBuilder = new DirectoryBuilder();
+       DirectoryBuilder directoryBuilder = new DirectoryBuilder("../cob_spec/public");
        assertEquals(fileNamesString, directoryBuilder.getLinksOfFiles());
    }
 }

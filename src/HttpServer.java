@@ -5,12 +5,15 @@ import java.net.Socket;
 public class HttpServer {
     public static class ServerThread extends Thread {
         Socket connectedClient = null;
+        String currentDirectory;
         HttpRequest request;
         RequestRouter router;
         Handler handler;
 
-        public ServerThread(Socket newConnection) {
+
+        public ServerThread(Socket newConnection, String directory) {
             connectedClient = newConnection;
+            currentDirectory = directory;
         }
 
         public void run() {
@@ -20,7 +23,7 @@ public class HttpServer {
                 router = new RequestRouter(request);
                 handler = router.routeToHandler(); // the handler takes care of asking the generator to create the status
                                                     // line and get the body of the request
-                handler.createResponse();
+                handler.createResponse(request, currentDirectory);
                 handler.sendResponse(connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
@@ -38,13 +41,14 @@ public class HttpServer {
     }
 
     public static void main(String[] args) throws IOException {
-        int portNumber = 5000;
+        int portNumber = Integer.parseInt(args[0]);
+        String currentDirectory = args[1];
         System.out.println("Server started!");
         ServerSocket serverSocket = new ServerSocket(portNumber);
         try {
             while (true) {
                 Socket newConnection = serverSocket.accept();
-                ServerThread newThread = new ServerThread(newConnection);
+                ServerThread newThread = new ServerThread(newConnection, currentDirectory);
                 newThread.start();
             }
         } finally {

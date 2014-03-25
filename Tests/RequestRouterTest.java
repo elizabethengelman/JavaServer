@@ -14,21 +14,21 @@ public class RequestRouterTest {
     @Test
     public void testGetRequest(){
         setUpRequestAndRouter("GET");
-        Handler testGetHandler = new GetHandler(request);
+        Handler testGetHandler = new GetHandler();
         assertEquals(testGetHandler.getClass(), router.routeToHandler().getClass());
     }
 
     @Test
     public void testPutRequest(){
         setUpRequestAndRouter("PUT");
-        Handler testPutHandler = new PutHandler(request);
+        Handler testPutHandler = new PutHandler();
         assertEquals(testPutHandler.getClass(), router.routeToHandler().getClass());
     }
 
     @Test
     public void testPostRequest(){
         setUpRequestAndRouter("POST");
-        Handler testPostHandler = new PostHandler(request);
+        Handler testPostHandler = new PostHandler();
         assertEquals(testPostHandler.getClass(), router.routeToHandler().getClass());
 
     }

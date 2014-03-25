@@ -8,14 +8,14 @@ public class DeleteHandler implements Handler {
     HttpRequest request;
     ResponseGenerator generator;
 
-    public DeleteHandler(HttpRequest req){
-        request = req;
+    public DeleteHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse() {
+    public void createResponse(HttpRequest httpRequest, String currentDirectory) {
+        request = httpRequest;
         File file;
-        if ((file = new File("../cob_spec/public" + request.getPath())).exists()) {
+        if ((file = new File(currentDirectory + request.getPath())).exists()) {
             generator.create200StatusWithoutHeaders();
             generator.setBody();
             try{

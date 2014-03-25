@@ -12,13 +12,15 @@ public class GetHandler implements Handler {
     HttpRequest request;
     ResponseGenerator generator;
     String typeOfImage;
+    String currentDirectory;
 
-    public GetHandler(HttpRequest req){
-        request = req;
+    public GetHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse() {
+    public void createResponse(HttpRequest httpRequest, String directory) {
+        request = httpRequest;
+        currentDirectory = directory;
         if (request.getPath().equals("/")) {
             String namesOfFiles = getDirectoryFileNames();
             generator.create200StatusWithoutHeaders();
@@ -28,26 +30,26 @@ public class GetHandler implements Handler {
             FileReader reader = new FileReader();
             if (auth.authenticated()){
                 generator.create200StatusWithoutHeaders();
-                generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                generator.setBody(reader.readFile(currentDirectory + request.getPath()));
             }else{
                 generator.create401Status();
                 generator.setBody("Authentication required".getBytes());
             }
-        }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
+        }else if (new File(currentDirectory + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
                 setTypeOfImage();
                 generator.create200StatusForImage(typeOfImage);
-                generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                generator.setBody(reader.readFile(currentDirectory + request.getPath()));
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
-                    generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                    generator.setBody(reader.readFile(currentDirectory + request.getPath()));
                     String range = request.getRange();
                     String newContentLength = range.substring(range.indexOf("-")+1);
                     generator.create206Status(Integer.toString(generator.body.length), range, newContentLength);
                 }else{
                     generator.create200StatusForTextFile();
-                    generator.setBody(reader.readFile("../cob_spec/public" + request.getPath()));
+                    generator.setBody(reader.readFile(currentDirectory + request.getPath()));
                 }
             }
         }else if(request.getPath().equals("/redirect")){
@@ -70,7 +72,7 @@ public class GetHandler implements Handler {
     }
 
     private String getDirectoryFileNames() {
-        DirectoryBuilder directoryBuilder = new DirectoryBuilder();
+        DirectoryBuilder directoryBuilder = new DirectoryBuilder(currentDirectory);
         return directoryBuilder.getLinksOfFiles();
     }
 

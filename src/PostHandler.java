@@ -7,12 +7,12 @@ public class PostHandler implements Handler{
     HttpRequest request;
     ResponseGenerator generator;
 
-    public PostHandler(HttpRequest req){
-        request = req;
+    public PostHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse() {
+    public void createResponse(HttpRequest httpRequest, String currentDirectory) {
+        request = httpRequest;
         if (request.getPath().equals("/")) {
             generator.create200StatusWithoutHeaders();
             generator.setBody();
@@ -20,14 +20,14 @@ public class PostHandler implements Handler{
             generator.create200StatusWithoutHeaders();
             generator.setBody();
             try{
-                PrintWriter writer = new PrintWriter("../cob_spec/public" + request.getPath(), "UTF-8");
+                PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
                 writer.println("data = cosby");
                 writer.close();
             }
             catch(IOException e){
                 System.out.println("The file writing exception: " + e);
             }
-        }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
+        }else if (new File(currentDirectory + request.getPath()).exists()) {
             generator.create405Status();
             generator.setBody();
         }else{

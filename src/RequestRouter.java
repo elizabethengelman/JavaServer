@@ -10,16 +10,16 @@ public class RequestRouter {
     public Handler routeToHandler(){
         Handler handler;
         if (request.getMethod().equals("GET")){
-            handler = new GetHandler(request);
+            handler = new GetHandler();
         }else if(request.getMethod().equals("PUT")){
-            handler = new PutHandler(request);
+            handler = new PutHandler();
         }else if(request.getMethod().equals("POST")){
-            handler = new PostHandler(request);
+            handler = new PostHandler();
         }else if(request.getMethod().equals("DELETE")){
-            handler = new DeleteHandler(request);
+            handler = new DeleteHandler();
         }
         else{
-            handler = new GetHandler(request);
+            handler = new GetHandler();
         }
         return handler;
     }
