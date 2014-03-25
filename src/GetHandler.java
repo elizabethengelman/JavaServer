@@ -35,7 +35,7 @@ public class GetHandler implements Handler {
                 generator.create401Status();
                 generator.setBody("Authentication required".getBytes());
             }
-        }else if (new File("../cob_spec/public" + request.getPath()).exists()) {
+        }else if (new File(currentDirectory + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
                 setTypeOfImage();
