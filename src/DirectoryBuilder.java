@@ -16,7 +16,6 @@ public class DirectoryBuilder {
 
     public List<File> getFilesInCurrentDirectory(){
         File f = new File(currentDirectory);
-        System.out.println("this is the current directory withint the DirectoryBuilder " + currentDirectory);
         List<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
         return files;
     }
@@ -31,7 +30,6 @@ public class DirectoryBuilder {
                 filesAsList += "<a href=" + path + "/" + file.getName()+ ">" + file.getName() + "</a><br>";
             }
         }
-        System.out.println(filesAsList);
         return filesAsList;
     }
 }
