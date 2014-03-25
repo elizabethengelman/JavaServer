@@ -13,6 +13,7 @@ public class GetHandler implements Handler {
     ResponseGenerator generator;
     String typeOfImage;
     String currentDirectory;
+    String updatedDirectory;
 
     public GetHandler(){
         generator = new ResponseGenerator();
@@ -22,7 +23,7 @@ public class GetHandler implements Handler {
         request = httpRequest;
         currentDirectory = directory;
         if (request.getPath().equals("/")) {
-            String namesOfFiles = getDirectoryFileNames();
+            String namesOfFiles = getDirectoryFileNames(currentDirectory, "/");
             generator.create200StatusWithoutHeaders();
             generator.setBody(namesOfFiles.getBytes());
         }else if(request.getPath().equals("/logs")){
@@ -41,6 +42,11 @@ public class GetHandler implements Handler {
                 setTypeOfImage();
                 generator.create200StatusForImage(typeOfImage);
                 generator.setBody(reader.readFile(currentDirectory + request.getPath()));
+            }else if((new File(currentDirectory + request.getPath())).isDirectory()){
+                updatedDirectory = currentDirectory + request.getPath();
+                String namesOfFiles = getDirectoryFileNames(updatedDirectory, request.getPath());
+                generator.create200StatusWithoutHeaders();
+                generator.setBody(namesOfFiles.getBytes());
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
                     generator.setBody(reader.readFile(currentDirectory + request.getPath()));
@@ -71,8 +77,8 @@ public class GetHandler implements Handler {
         }
     }
 
-    private String getDirectoryFileNames() {
-        DirectoryBuilder directoryBuilder = new DirectoryBuilder(currentDirectory);
+    private String getDirectoryFileNames(String directory, String currentPath) {
+        DirectoryBuilder directoryBuilder = new DirectoryBuilder(directory, currentPath);
         return directoryBuilder.getLinksOfFiles();
     }
 
