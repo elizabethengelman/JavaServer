@@ -12,13 +12,15 @@ public class GetHandler implements Handler {
     HttpRequest request;
     ResponseGenerator generator;
     String typeOfImage;
+    String currentDirectory;
 
     public GetHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse(HttpRequest httpRequest, String currentDirectory) {
+    public void createResponse(HttpRequest httpRequest, String directory) {
         request = httpRequest;
+        currentDirectory = directory;
         if (request.getPath().equals("/")) {
             String namesOfFiles = getDirectoryFileNames();
             generator.create200StatusWithoutHeaders();
@@ -70,7 +72,7 @@ public class GetHandler implements Handler {
     }
 
     private String getDirectoryFileNames() {
-        DirectoryBuilder directoryBuilder = new DirectoryBuilder();
+        DirectoryBuilder directoryBuilder = new DirectoryBuilder(currentDirectory);
         return directoryBuilder.getLinksOfFiles();
     }
 

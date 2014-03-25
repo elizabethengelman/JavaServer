@@ -41,8 +41,8 @@ public class HttpServer {
     }
 
     public static void main(String[] args) throws IOException {
-        int portNumber = 5000;
-        String currentDirectory = "../cob_spec/public";
+        int portNumber = Integer.parseInt(args[0]);
+        String currentDirectory = args[1];
         System.out.println("Server started!");
         ServerSocket serverSocket = new ServerSocket(portNumber);
         try {

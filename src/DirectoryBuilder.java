@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class DirectoryBuilder {
     String currentDirectory;
-    public DirectoryBuilder(){
-        currentDirectory = "../cob_spec/public";
+    public DirectoryBuilder(String directory){
+        currentDirectory = directory;
     }
 
     public List<File> getFilesInCurrentDirectory(){
