@@ -16,7 +16,8 @@ public class DeleteHandler implements Handler {
         request = httpRequest;
         File file;
         if ((file = new File(currentDirectory + request.getPath())).exists()) {
-            generator.create200StatusWithoutHeaders();
+            generator.setStatusLine("200");
+            generator.setHeaders("Content-Type: text/plain");
             generator.setBody();
             try{
                 file.delete();
@@ -25,14 +26,14 @@ public class DeleteHandler implements Handler {
                 System.out.println("The file writing exception: " + e);
             }
         }else{
-            generator.create404Status();
+            generator.setStatusLine("404");
             generator.setBody();
         }
     }
 
     public void sendResponse(OutputStream outputStream) {
         try {
-            byte[] requestHeader = generator.header;
+            byte[] requestHeader = generator.fullHeader;
             byte[] requestBody = generator.body;
             DataOutputStream dOut = new DataOutputStream(outputStream);
             dOut.write(requestHeader);

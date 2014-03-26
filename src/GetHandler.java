@@ -2,9 +2,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by elizabethengelman on 3/20/14.
@@ -20,26 +17,11 @@ public class GetHandler implements Handler {
         generator = new ResponseGenerator();
     }
 
-
     public void createResponse(HttpRequest httpRequest, String directory) {
         request = httpRequest;
         currentDirectory = directory;
         if (request.getPath().equals("/")) {
               createIndexResponse();
-        }else if(request.getPath().equals("/logs")){
-            Authenticator auth = new Authenticator(request);
-            FileReader reader = new FileReader();
-            if (auth.authenticated()){
-                generator.setStatusLine("200");
-                generator.setHeaders("Content-Type: text/html");
-                generator.setBody(reader.readFile(currentDirectory + request.getPath()));
-
-            }else{
-
-                generator.setStatusLine("401");
-                generator.setHeaders();
-                generator.setBody("Authentication required".getBytes());
-            }
         }else if (new File(currentDirectory + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
@@ -47,58 +29,17 @@ public class GetHandler implements Handler {
             }else if((new File(currentDirectory + request.getPath())).isDirectory()){
                 createSubDirectoryResponse();
             }else {
-                if (request.getPath().equals("/partial_content.txt")){
-                    createPartialContentResponse(reader);
-                }else{
-                    createTextFileResponse(reader);
-                }
+                 createTextFileResponse(reader);
             }
-        }else if(request.getPath().equals("/redirect")){
-            createRedirectResponse();
-        }else if(request.getPath().contains("/parameters")){
-            createParameterResponse();
-        }else if(request.getPath().equals("/method_options")){
-            createMethodOptionsResponse();
-        }else if (request.getPath().equals("/form")){
-            generator.create200StatusWithoutHeaders();
-            generator.setBody();
         }else{
-            generator.setStatusLine("404");
-            generator.setHeaders();
-            generator.setBody("File not found".getBytes());
+            create404Response();
         }
     }
 
-    private void createMethodOptionsResponse() {
-        generator.setStatusLine("200");
-        generator.setHeaders("Allow: GET,HEAD,POST,OPTIONS,PUT");
-        generator.setBody();
-    }
-
-    private void createParameterResponse() {
-        generator.setStatusLine("200");
-        generator.setHeaders("Content-Type: text/html");
-        generator.setBody(iterateThroughParameters().getBytes());
-    }
-
-    private void createRedirectResponse() {
-        generator.setStatusLine("307");
-        generator.setHeaders("Location: http://localhost:5000/");
-        request.setPath("/");
-    }
-
-    private void createPartialContentResponse(FileReader reader) {
-        byte[] file = reader.readFile(currentDirectory + request.getPath());
-        String range = request.getRange();
-        String partialContentLength = range.substring(range.indexOf("-")+1);
-        String originalContentLength = Integer.toString(file.length);
-        Date date = new Date();
-        generator.setStatusLine("206");
-        generator.setHeaders("Content-Type: text/plain",
-                             "Content-Range: bytes " + range + "/" + originalContentLength,
-                             "Date: " + date.toString(),
-                             "Content-Length: " + partialContentLength);
-        generator.setBody(file);
+    private void create404Response() {
+        generator.setStatusLine("404");
+        generator.setHeaders();
+        generator.setBody("File not found".getBytes());
     }
 
     private void createTextFileResponse(FileReader reader) {
@@ -172,18 +113,6 @@ public class GetHandler implements Handler {
         } else {
             return false;
         }
-    }
-
-    private String iterateThroughParameters(){
-        Map<String, String> params = request.getIndividualParams();
-        String tempBody = new String();
-        Iterator it = params.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry pairs = (Map.Entry)it.next();
-            tempBody += pairs.getKey() + " = " + pairs.getValue() + "\n";
-            it.remove();
-        }
-        return tempBody;
     }
 
     private void setTypeOfImage(){

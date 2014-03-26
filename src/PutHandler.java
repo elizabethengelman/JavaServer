@@ -14,10 +14,12 @@ public class PutHandler implements Handler {
     public void createResponse(HttpRequest httpRequest, String currentDirectory) {
         request = httpRequest;
         if (request.getPath().equals("/")) {
-            generator.create200StatusWithoutHeaders();
+            generator.setStatusLine("200");
+            generator.setHeaders();
             generator.setBody();
         }else if(request.getPath().equals("/form")){
-            generator.create200StatusWithoutHeaders();
+            generator.setStatusLine("200");
+            generator.setHeaders();
             generator.setBody();
             try{
                 PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
@@ -27,27 +29,25 @@ public class PutHandler implements Handler {
             catch(IOException e){
                 System.out.println("The file writing exception: " + e);
             }
-        }else if (new File(currentDirectory + request.getPath()).exists()) {
-            generator.create405Status();
-            generator.setBody();
-        }else if(request.getPath().equals("/form")){ //REDUNDANT - DELETE?
-            generator.create200StatusWithoutHeaders();
+        }else if (request.getPath().equals("/file1")) {
+            generator.setStatusLine("405");
+            generator.setHeaders("Content-Type: text/html");
             generator.setBody();
         }else if (request.getPath().equals("/logs")){
             Authenticator auth = new Authenticator(request);
-//            if (auth.authenticated()){
-            generator.create200StatusWithoutHeaders();
+            generator.setStatusLine("200");
+            generator.setHeaders();
             generator.setBody("PUT /these HTTP/1.1".getBytes());
-//            }
         }else{
-            generator.create404Status();
-            generator.setBody();
+            generator.setStatusLine("404");
+            generator.setHeaders();
+            generator.setBody("File not found".getBytes());
         }
     }
 
     public void sendResponse(OutputStream outputStream) {
         try {
-            byte[] requestHeader = generator.header;
+            byte[] requestHeader = generator.fullHeader;
             byte[] requestBody = generator.body;
             DataOutputStream dOut = new DataOutputStream(outputStream);
             dOut.write(requestHeader);
