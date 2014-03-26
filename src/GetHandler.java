@@ -31,11 +31,10 @@ public class GetHandler implements Handler {
             FileReader reader = new FileReader();
             if (auth.authenticated()){
                 generator.setStatusLine("200");
-                generator.setHeaders("Content-Type: text/html");
+                generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
                 generator.setBody(reader.readFile(currentDirectory + request.getPath()));
 
             }else{
-
                 generator.setStatusLine("401");
                 generator.setHeaders();
                 generator.setBody("Authentication required".getBytes());
@@ -64,9 +63,10 @@ public class GetHandler implements Handler {
             generator.setBody();
         }else{
             generator.setStatusLine("404");
-            generator.setHeaders();
-            generator.setBody("File not found".getBytes());
+            generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
+            generator.setBody("Not found".getBytes());
         }
+
     }
 
     private void createMethodOptionsResponse() {
@@ -77,7 +77,7 @@ public class GetHandler implements Handler {
 
     private void createParameterResponse() {
         generator.setStatusLine("200");
-        generator.setHeaders("Content-Type: text/html");
+        generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
         generator.setBody(iterateThroughParameters().getBytes());
     }
 
@@ -94,7 +94,7 @@ public class GetHandler implements Handler {
         String originalContentLength = Integer.toString(file.length);
         Date date = new Date();
         generator.setStatusLine("206");
-        generator.setHeaders("Content-Type: text/plain",
+        generator.setHeaders(CONTENT_TYPE_HTML_HEADER,
                              "Content-Range: bytes " + range + "/" + originalContentLength,
                              "Date: " + date.toString(),
                              "Content-Length: " + partialContentLength);
@@ -103,7 +103,7 @@ public class GetHandler implements Handler {
 
     private void createTextFileResponse(FileReader reader) {
         generator.setStatusLine("200");
-        generator.setHeaders("Content-Type: text/html");
+        generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
         generator.setBody(reader.readFile(currentDirectory + request.getPath()));
     }
 
@@ -111,7 +111,7 @@ public class GetHandler implements Handler {
         updatedDirectory = currentDirectory + request.getPath();
         String namesOfFiles = getDirectoryFileNames(updatedDirectory, request.getPath());
         generator.setStatusLine("200");
-        generator.setHeaders("Content-Type: text/html");
+        generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
         generator.setBody(namesOfFiles.getBytes());
     }
 
@@ -127,7 +127,8 @@ public class GetHandler implements Handler {
         return directoryBuilder.getLinksOfFiles();
     }
 
-    public void sendResponse(OutputStream outputStream) {
+    public void sendResponse(OutputStream outputStream) { //maybe try to have the input stream of file link up right to the
+                                                          //output stream of the writer
         try {
             byte[] requestHeader = generator.fullHeader;
             byte[] requestBody = generator.body;
