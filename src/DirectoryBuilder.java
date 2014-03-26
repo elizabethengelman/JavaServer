@@ -8,8 +8,10 @@ import java.util.List;
  */
 public class DirectoryBuilder {
     String currentDirectory;
-    public DirectoryBuilder(String directory){
+    String path;
+    public DirectoryBuilder(String directory, String currentPath){
         currentDirectory = directory;
+        path = currentPath;
     }
 
     public List<File> getFilesInCurrentDirectory(){
@@ -22,7 +24,11 @@ public class DirectoryBuilder {
         List<File> filesInDirectory = getFilesInCurrentDirectory();
         String filesAsList = "";
         for (File file: filesInDirectory){
-            filesAsList += "<a href=/" + file.getName()+ ">" + file.getName() + "</a><br>";
+            if (path == "/"){
+                filesAsList += "<a href=" + path + file.getName()+ ">" + file.getName() + "</a><br>";
+            }else{
+                filesAsList += "<a href=" + path + "/" + file.getName()+ ">" + file.getName() + "</a><br>";
+            }
         }
         return filesAsList;
     }

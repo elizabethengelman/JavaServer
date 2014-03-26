@@ -5,7 +5,7 @@ import java.net.Socket;
 public class HttpServer {
     public static class ServerThread extends Thread {
         Socket connectedClient = null;
-        String currentDirectory;
+        String mainDirectory;
         HttpRequest request;
         RequestRouter router;
         Handler handler;
@@ -13,7 +13,7 @@ public class HttpServer {
 
         public ServerThread(Socket newConnection, String directory) {
             connectedClient = newConnection;
-            currentDirectory = directory;
+            mainDirectory = directory;
         }
 
         public void run() {
@@ -21,9 +21,8 @@ public class HttpServer {
                 request = new HttpRequest(connectedClient.getInputStream());
                 logRequest(request.requestString);
                 router = new RequestRouter(request);
-                handler = router.routeToHandler(); // the handler takes care of asking the generator to create the status
-                                                    // line and get the body of the request
-                handler.createResponse(request, currentDirectory);
+                handler = router.routeToHandler();
+                handler.createResponse(request, mainDirectory);
                 handler.sendResponse(connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
