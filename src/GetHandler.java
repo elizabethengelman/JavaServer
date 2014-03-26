@@ -2,6 +2,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -19,62 +20,106 @@ public class GetHandler implements Handler {
         generator = new ResponseGenerator();
     }
 
+
     public void createResponse(HttpRequest httpRequest, String directory) {
         request = httpRequest;
         currentDirectory = directory;
         if (request.getPath().equals("/")) {
-            String namesOfFiles = getDirectoryFileNames(currentDirectory, "/");
-            generator.create200StatusWithoutHeaders();
-            generator.setBody(namesOfFiles.getBytes());
+              createIndexResponse();
         }else if(request.getPath().equals("/logs")){
             Authenticator auth = new Authenticator(request);
             FileReader reader = new FileReader();
             if (auth.authenticated()){
-                generator.create200StatusWithoutHeaders();
+                generator.setStatusLine("200");
+                generator.setHeaders("Content-Type: text/html");
                 generator.setBody(reader.readFile(currentDirectory + request.getPath()));
+
             }else{
-                generator.create401Status();
+
+                generator.setStatusLine("401");
+                generator.setHeaders();
                 generator.setBody("Authentication required".getBytes());
             }
         }else if (new File(currentDirectory + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
-                setTypeOfImage();
-                generator.create200StatusForImage(typeOfImage);
-                generator.setBody(reader.readFile(currentDirectory + request.getPath()));
+                createImageResponse(reader);
             }else if((new File(currentDirectory + request.getPath())).isDirectory()){
-                updatedDirectory = currentDirectory + request.getPath();
-                String namesOfFiles = getDirectoryFileNames(updatedDirectory, request.getPath());
-                generator.create200StatusWithoutHeaders();
-                generator.setBody(namesOfFiles.getBytes());
+                createSubDirectoryResponse();
             }else {
                 if (request.getPath().equals("/partial_content.txt")){
-                    generator.setBody(reader.readFile(currentDirectory + request.getPath()));
-                    String range = request.getRange();
-                    String newContentLength = range.substring(range.indexOf("-")+1);
-                    generator.create206Status(Integer.toString(generator.body.length), range, newContentLength);
+                    createPartialContentResponse(reader);
                 }else{
-                    generator.create200StatusForTextFile();
-                    generator.setBody(reader.readFile(currentDirectory + request.getPath()));
+                    createTextFileResponse(reader);
                 }
             }
         }else if(request.getPath().equals("/redirect")){
-            generator.createRedirectStatus();
-            request.setPath("/");
+            createRedirectResponse();
         }else if(request.getPath().contains("/parameters")){
-            String tempBody = iterateThroughParameters();
-            generator.create200StatusWithoutHeaders();
-            generator.setBody(tempBody.getBytes());
+            createParameterResponse();
         }else if(request.getPath().equals("/method_options")){
-            generator.create200StatusForOptionsMethod();
-            generator.setBody();
+            createMethodOptionsResponse();
         }else if (request.getPath().equals("/form")){
             generator.create200StatusWithoutHeaders();
             generator.setBody();
         }else{
-            generator.create404Status();
+            generator.setStatusLine("404");
+            generator.setHeaders();
             generator.setBody("File not found".getBytes());
         }
+    }
+
+    private void createMethodOptionsResponse() {
+        generator.setStatusLine("200");
+        generator.setHeaders("Allow: GET,HEAD,POST,OPTIONS,PUT");
+        generator.setBody();
+    }
+
+    private void createParameterResponse() {
+        generator.setStatusLine("200");
+        generator.setHeaders("Content-Type: text/html");
+        generator.setBody(iterateThroughParameters().getBytes());
+    }
+
+    private void createRedirectResponse() {
+        generator.setStatusLine("307");
+        generator.setHeaders("Location: http://localhost:5000/");
+        request.setPath("/");
+    }
+
+    private void createPartialContentResponse(FileReader reader) {
+        byte[] file = reader.readFile(currentDirectory + request.getPath());
+        String range = request.getRange();
+        String partialContentLength = range.substring(range.indexOf("-")+1);
+        String originalContentLength = Integer.toString(file.length);
+        Date date = new Date();
+        generator.setStatusLine("206");
+        generator.setHeaders("Content-Type: text/plain",
+                             "Content-Range: bytes " + range + "/" + originalContentLength,
+                             "Date: " + date.toString(),
+                             "Content-Length: " + partialContentLength);
+        generator.setBody(file);
+    }
+
+    private void createTextFileResponse(FileReader reader) {
+        generator.setStatusLine("200");
+        generator.setHeaders("Content-Type: text/html");
+        generator.setBody(reader.readFile(currentDirectory + request.getPath()));
+    }
+
+    private void createSubDirectoryResponse() {
+        updatedDirectory = currentDirectory + request.getPath();
+        String namesOfFiles = getDirectoryFileNames(updatedDirectory, request.getPath());
+        generator.setStatusLine("200");
+        generator.setHeaders("Content-Type: text/html");
+        generator.setBody(namesOfFiles.getBytes());
+    }
+
+    private void createImageResponse(FileReader reader) {
+        setTypeOfImage();
+        generator.setStatusLine("200");
+        generator.setHeaders("Content-Type: " + typeOfImage);
+        generator.setBody(reader.readFile(currentDirectory + request.getPath()));
     }
 
     private String getDirectoryFileNames(String directory, String currentPath) {
@@ -84,7 +129,7 @@ public class GetHandler implements Handler {
 
     public void sendResponse(OutputStream outputStream) {
         try {
-            byte[] requestHeader = generator.header;
+            byte[] requestHeader = generator.fullHeader;
             byte[] requestBody = generator.body;
             DataOutputStream dOut = new DataOutputStream(outputStream);
             dOut.write(requestHeader);
@@ -149,5 +194,12 @@ public class GetHandler implements Handler {
         }else if (isAPngFile()){
             typeOfImage = "image/png";
         }
+    }
+
+    private void createIndexResponse(){
+        String namesOfFiles = getDirectoryFileNames(currentDirectory, "/");
+        generator.setStatusLine("200");
+        generator.setHeaders("Content-Type: text/html");
+        generator.setBody(namesOfFiles.getBytes());
     }
 }

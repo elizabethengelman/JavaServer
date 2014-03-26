@@ -23,6 +23,7 @@ public class HttpRequest {
                     requestString += newRequestString;
                 }
             }
+            System.out.println(requestString);
         }
         catch(IOException e){
             System.out.println(e);
