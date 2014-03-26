@@ -28,7 +28,7 @@ public class ResponseGenerator {
     }
 
     public void createRedirectStatus() {
-        header = "HTTP/1.1 307 Temporary Redirect\r\nLocation: http://localhost:5000/".getBytes();
+        header = "HTTP/1.1 307 Temporary Redirect\r\nLocation: http://localhost:5000/".getBytes();//this needs to be changed-shouldn't be hardcoded
     }
 
     public void create404Status() {
