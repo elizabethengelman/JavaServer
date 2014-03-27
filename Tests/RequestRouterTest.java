@@ -14,7 +14,7 @@ public class RequestRouterTest {
     @Test
     public void testGetRequest(){
         setUpRequestAndRouter("GET", "/");
-        Handler testHandler = new GetHandler();
+        Handler testHandler = new IndexHandler();
         assertEquals(testHandler.getClass(), router.routeToHandler().getClass());
     }
 

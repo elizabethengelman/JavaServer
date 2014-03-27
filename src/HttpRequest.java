@@ -25,13 +25,26 @@ public class HttpRequest {
                     requestString += newRequestString;
                 }
             }
-            System.out.println(requestString);
+            System.out.println("THE REQUEST STRING" + requestString);
+            System.out.println("this req has content lenght" + hasContentLength());
+            if (hasContentLength()){
+                readAdditionalBytes();
+            }
         }
         catch(IOException e){
             System.out.println(e);
         }
     }
 
+    private boolean hasContentLength(){
+        return requestString.contains("Content-Length");
+    }
+
+    private void readAdditionalBytes(){
+        String sub = requestString.substring(requestString.indexOf("Content-Length"), requestString.indexOf("Content-Type"));
+        int contentLength = Integer.parseInt(sub.substring(sub.indexOf(":") + 2));
+        String s = inputFromClient.red 
+    }
     private boolean isEndOfHeader(String newRequestString) {
         return newRequestString == null || newRequestString.equals("") || newRequestString.contains("\r\n");
     }

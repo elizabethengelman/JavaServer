@@ -11,37 +11,6 @@ public class ResponseGenerator {
     String statusLine;
     String headers = "";
 
-    public void create200StatusWithoutHeaders() {
-        setStatusLine("200");
-        setHeaders("Content-Type: text/html", "Allow: GET,HEAD,POST,OPTIONS,PUT");
-        header = "HTTP/1.1 200 OK\r\nContent-Type: text/html\n\r\n".getBytes();
-    }
-
-    public void create200StatusForImage(String imageType) {
-        header = ("HTTP/1.1 200 OK\r\nContent-Type: " + imageType + "\n\r\n").getBytes();
-    }
-
-    public void create200StatusForTextFile() {
-        header = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n".getBytes();
-    }
-
-    public void create405Status() {
-        header = "HTTP/1.1 405 Method Not Allowed\r\n".getBytes();
-    }
-
-    public void create200StatusForOptionsMethod() {
-        header = "HTTP/1.1 200 OK\r\n Allow: GET,HEAD,POST,OPTIONS,PUT\r\n".getBytes();
-    }
-
-    public void createRedirectStatus() {
-        header = "HTTP/1.1 307 Temporary Redirect\r\nLocation: http://localhost:5000/".getBytes();//this needs to be changed-shouldn't be hardcoded
-    }
-
-    public void create404Status() {
-        header = "HTTP/1.1 404 Not Found\r\n\r\n".getBytes();
-    }
-
-
     public void setStatusLine(String code){
         Map statusCodes = new LinkedHashMap<String, String>();
         statusCodes.put("200", "200 OK");
