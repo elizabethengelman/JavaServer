@@ -17,7 +17,7 @@ public class DirectoryBuilderTest {
                "<a href=/image.png>image.png</a><br>" +
                "<a href=/logs>logs</a><br>" +
                "<a href=/partial_content.txt>partial_content.txt</a><br>" +
-               "<a href=/testfolder>testfolder</a><br>" +
+               "<a href=/sub_directory>sub_directory</a><br>" +
                "<a href=/text-file.txt>text-file.txt</a><br>";
        DirectoryBuilder directoryBuilder = new DirectoryBuilder("../cob_spec/public", "/");
        assertEquals(fileNamesString, directoryBuilder.getLinksOfFiles());

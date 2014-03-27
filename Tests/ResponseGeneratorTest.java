@@ -16,13 +16,13 @@ public class ResponseGeneratorTest {
     @Test
     public void test200WithoutHeaders(){
         generator.create200StatusWithoutHeaders();
-        assertArrayEquals("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n".getBytes(), generator.header);
+        assertArrayEquals("HTTP/1.1 200 OK\r\nContent-Type: text/html\n\r\n".getBytes(), generator.header);
     }
 
     @Test
     public void test200ForImage(){
         generator.create200StatusForImage("image/png");
-        assertArrayEquals("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n\r\n".getBytes(), generator.header);
+        assertArrayEquals("HTTP/1.1 200 OK\r\nContent-Type: image/png\n\r\n".getBytes(), generator.header);
     }
 
     @Test
