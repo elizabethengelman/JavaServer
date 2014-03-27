@@ -13,11 +13,7 @@ public class PutHandler implements Handler {
 
     public void createResponse(HttpRequest httpRequest, String currentDirectory) {
         request = httpRequest;
-        if (request.getPath().equals("/")) {
-            generator.setStatusLine("200");
-            generator.setHeaders();
-            generator.setBody();
-        }else if(request.getPath().equals("/form")){
+        if(request.getPath().equals("/form")){
             generator.setStatusLine("200");
             generator.setHeaders();
             generator.setBody();
@@ -29,19 +25,10 @@ public class PutHandler implements Handler {
             catch(IOException e){
                 System.out.println("The file writing exception: " + e);
             }
-        }else if (request.getPath().equals("/file1")) {
+        }else {
             generator.setStatusLine("405");
             generator.setHeaders("Content-Type: text/html");
             generator.setBody();
-        }else if (request.getPath().equals("/logs")){
-            Authenticator auth = new Authenticator(request);
-            generator.setStatusLine("200");
-            generator.setHeaders();
-            generator.setBody("PUT /these HTTP/1.1".getBytes());
-        }else{
-            generator.setStatusLine("404");
-            generator.setHeaders();
-            generator.setBody("File not found".getBytes());
         }
     }
 

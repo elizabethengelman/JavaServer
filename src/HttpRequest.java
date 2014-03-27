@@ -18,6 +18,8 @@ public class HttpRequest {
         try{
             String newRequestString = inputFromClient.readLine();
             requestString += newRequestString;
+            System.out.println("First request string: " + requestString);
+
             while (!isEndOfHeader(newRequestString)){
                 if ((newRequestString = inputFromClient.readLine()) != null){
                     requestString += newRequestString;

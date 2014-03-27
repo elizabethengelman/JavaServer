@@ -30,6 +30,13 @@ public class RequestRouterTest {
         setUpRequestAndRouter("POST");
         Handler testPostHandler = new PostHandler();
         assertEquals(testPostHandler.getClass(), router.routeToHandler().getClass());
+    }
+
+    @Test
+    public void testNotFoundRequest(){
+        setUpRequestAndRouter("TESTMETHOD");
+        Handler testNotFoundHandler = new NotFoundHandler();
+        assertEquals(testNotFoundHandler.getClass(), router.routeToHandler().getClass());
 
     }
 
