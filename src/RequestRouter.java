@@ -14,7 +14,7 @@ public class RequestRouter {
 
     public Handler routeToHandler(){
         Handler handler;
-        if (cobSpecSpecificPaths.contains(request.getPath())){
+        if (cobSpecSpecificPaths.contains(request.getPath()) || request.getPath().contains("parameters")){
             handler = new CobSpecHandler();
         }else if (request.getMethod().equals("GET")){
             handler = new GetHandler();
