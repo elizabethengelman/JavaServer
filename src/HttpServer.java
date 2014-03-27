@@ -22,8 +22,9 @@ public class HttpServer {
                 logRequest(request.requestString);
                 router = new RequestRouter(request);
                 handler = router.routeToHandler();
-                handler.createResponse(request, mainDirectory);
-                handler.sendResponse(connectedClient.getOutputStream());
+                handler.processRequest(request, mainDirectory, connectedClient.getOutputStream());
+//                handler.createResponse(request, mainDirectory);
+//                handler.sendResponse(connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
             }

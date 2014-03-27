@@ -20,8 +20,7 @@ public class GetHandler implements Handler {
         generator = new ResponseGenerator();
     }
 
-
-    public void createResponse(HttpRequest httpRequest, String directory) {
+    public Handler createResponse(HttpRequest httpRequest, String directory) {
         request = httpRequest;
         currentDirectory = directory;
         if (request.getPath().equals("/")) {
@@ -65,8 +64,9 @@ public class GetHandler implements Handler {
             generator.setStatusLine("404");
             generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
             generator.setBody("Not found".getBytes());
+            return null;
         }
-
+        return this;
     }
 
     private void createMethodOptionsResponse() {
@@ -140,6 +140,19 @@ public class GetHandler implements Handler {
         }
     }
 
+    @Override
+    public boolean canHandleRequest(HttpRequest request) {
+        return request.getMethod().equals("GET");
+    }
+
+    @Override
+    public Handler processRequest(HttpRequest request, String currentDirectory, OutputStream output) {
+        Handler handler = createResponse(request, currentDirectory);
+        if (handler != null){
+//            handler.
+        }
+    }
+
     private Boolean isAGifFile() {
         Boolean outcome = false;
         if (request.getPath().contains("gif")) {
@@ -204,3 +217,5 @@ public class GetHandler implements Handler {
         generator.setBody(namesOfFiles.getBytes());
     }
 }
+
+

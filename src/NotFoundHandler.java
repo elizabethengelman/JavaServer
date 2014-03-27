@@ -5,23 +5,19 @@ import java.io.OutputStream;
 /**
  * Created by elizabethengelman on 3/26/14.
  */
-public class OptionsHandler implements Handler {
-    HttpRequest request;
-    ResponseGenerator generator;
-    String currentDirectory;
+public class NotFoundHandler implements Handler {
 
-    public OptionsHandler(){
+    ResponseGenerator generator;
+
+    public NotFoundHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse(HttpRequest httpRequest, String directory) {
-        request = httpRequest;
-        currentDirectory = directory;
-        generator.setStatusLine("200");
-        generator.setHeaders("Allow: GET,HEAD,POST,OPTIONS,PUT");
-        generator.setBody();
+    public void createResponse(HttpRequest request, String currentDirectory){
+        generator.setStatusLine("404");
+        generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
+        generator.setBody("Not Found".getBytes());
     }
-
     public void sendResponse(OutputStream outputStream) {
         try {
             byte[] requestHeader = generator.fullHeader;
@@ -36,6 +32,6 @@ public class OptionsHandler implements Handler {
 
     @Override
     public boolean canHandleRequest(HttpRequest request) {
-        return request.getMethod().equals("OPTIONS");
+        return true;
     }
 }

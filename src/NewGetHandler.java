@@ -15,4 +15,9 @@ public class NewGetHandler implements Handler {
     public void sendResponse(OutputStream outputStream) {
 
     }
+
+    @Override
+    public boolean canHandleRequest(HttpRequest request) {
+        return false;
+    }
 }

@@ -18,6 +18,7 @@ public class PutHandler implements Handler {
             generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
             generator.setBody();
         }else if(request.getPath().equals("/form")){
+            System.out.print("in the /form puts method");
             generator.setStatusLine("200");
             generator.setHeaders(CONTENT_TYPE_HTML_HEADER);
             generator.setBody();
@@ -50,5 +51,11 @@ public class PutHandler implements Handler {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    @Override
+    public boolean canHandleRequest(HttpRequest request) {
+        return request.getMethod().equals("PUT");
+
     }
 }

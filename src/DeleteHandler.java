@@ -41,4 +41,9 @@ public class DeleteHandler implements Handler {
             System.out.println(e);
         }
     }
+
+    @Override
+    public boolean canHandleRequest(HttpRequest request) {
+        return request.getMethod().equals("DELETE");
+    }
 }
