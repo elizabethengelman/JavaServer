@@ -29,7 +29,7 @@ public class GetHandler implements Handler {
             }else if((new File(currentDirectory + request.getPath())).isDirectory()){
                 createSubDirectoryResponse();
             }else {
-                 createTextFileResponse(reader);
+                createTextFileResponse(reader);
             }
         }
         responsePieces.put("header", generator.fullHeader);

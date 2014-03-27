@@ -22,14 +22,11 @@ public class AuthenticatedHandler implements Handler {
         Map<String, byte[]> responsePieces = new LinkedHashMap<String, byte[]>();
         Authenticator auth = new Authenticator(request);
         FileReader reader = new FileReader();
-        System.out.println("Is authenticated?" + auth.authenticated());
-
         if (auth.authenticated()){
             generator.setStatusLine("200");
             generator.setHeaders("Content-Type: text/html");
             generator.setBody(reader.readFile(currentDirectory + request.getPath()));
         }else{
-            System.out.println("get's here?????");
             generator.setStatusLine("401");
             generator.setHeaders();
             generator.setBody("Authentication required".getBytes());

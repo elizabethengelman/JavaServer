@@ -13,21 +13,37 @@ public class IndexHandler implements Handler{
     OutputStream outputStream;
     String currentDirectory;
 
-
     public IndexHandler(){
         generator = new ResponseGenerator();
     }
+    public void processResponse(HttpRequest httpRequest, String directory, OutputStream os){
+        request = httpRequest;
+        currentDirectory = directory;
+        outputStream = os;
+        Map<String, byte[]> responsePieces = createResponse();
+        System.out.println(responsePieces);
+        sendResponse(responsePieces);
+    }
+
     public Map<String, byte[]> createResponse() {
         String namesOfFiles = getDirectoryFileNames(currentDirectory, "/");
+        generateResponse(namesOfFiles);
+        Map<String, byte[]> responsePieces = putResponseTogether();
+        return responsePieces;
+    }
 
-        generator.setStatusLine("200");
-        generator.setHeaders("Content-Type: text/html");
-        generator.setBody(namesOfFiles.getBytes());
-
+    private Map<String, byte[]> putResponseTogether() {
         Map<String, byte[]> responsePieces = new LinkedHashMap<String, byte[]>();
         responsePieces.put("header", generator.fullHeader);
         responsePieces.put("body", generator.body);
+
         return responsePieces;
+    }
+
+    private void generateResponse(String namesOfFiles) {
+        generator.setStatusLine("200");
+        generator.setHeaders("Content-Type: text/html");
+        generator.setBody(namesOfFiles.getBytes());
     }
 
     public void sendResponse(Map<String, byte[]> responsePieces) {
@@ -38,14 +54,6 @@ public class IndexHandler implements Handler{
         } catch (IOException e) {
             System.out.println(e);
         }
-    }
-
-    public void processResponse(HttpRequest httpRequest, String directory, OutputStream os){
-        request = httpRequest;
-        currentDirectory = directory;
-        outputStream = os;
-        Map<String, byte[]> responsePieces = createResponse();
-        sendResponse(responsePieces);
     }
 
     private String getDirectoryFileNames(String directory, String currentPath) {
