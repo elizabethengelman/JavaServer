@@ -8,7 +8,7 @@ import java.io.ByteArrayInputStream;
 public class GetHandlerTest {
     HttpRequest request;
     Handler handler;
-
+    String currentDirectory = "../cob_spec/public";
     private void setUpRequestAndRouter(String requestPath){
         request = new HttpRequest(new ByteArrayInputStream(("GET " + requestPath + " HTTP/1.1").getBytes()));
         handler = new GetHandler();
@@ -18,6 +18,7 @@ public class GetHandlerTest {
     @Test
     public void testResponseForIndex(){
         setUpRequestAndRouter("/");
+        handler.createResponse(request,currentDirectory);
     }
 
     @Test

@@ -1,16 +1,23 @@
+import java.io.File;
+
 /**
  * Created by elizabethengelman on 3/20/14.
  */
 public class RequestRouter {
     HttpRequest request;
-    public RequestRouter(HttpRequest req){
+    String currentDirectory;
+
+    public RequestRouter(HttpRequest req, String directory){
         request = req;
+        currentDirectory = directory;
     }
 
     public Handler routeToHandler(){
         Handler handler;
         if (request.getMethod().equals("GET")){
-            if (request.getPath().equals("/redirect")){
+            if (request.getMethod().equals("/")){
+                handler = new IndexHandler();
+            }else if (request.getPath().equals("/redirect")){
                 handler = new RedirectHandler();
             }else if(request.getPath().contains("/parameters")){
                 handler = new ParametersHandler();
@@ -20,9 +27,10 @@ public class RequestRouter {
                 handler = new MethodOptionsHandler();
             }else if (request.getPath().equals("/logs")){
                 handler = new AuthenticatedHandler();
-            }else{
-                System.out.print("a get handler is created");
+            }else if(new File(currentDirectory + request.getPath()).exists()){
                 handler = new GetHandler();
+            }else{
+                handler = new NotFoundHandler();
             }
         }else if(request.getMethod().equals("POST")){
             handler = new PostHandler();
@@ -35,7 +43,6 @@ public class RequestRouter {
         }else{
             handler = new NotFoundHandler();
         }
-        System.out.println(handler);
         return handler;
     }
 }

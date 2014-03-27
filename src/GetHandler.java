@@ -20,9 +20,7 @@ public class GetHandler implements Handler {
     public void createResponse(HttpRequest httpRequest, String directory) {
         request = httpRequest;
         currentDirectory = directory;
-        if (request.getPath().equals("/")) {
-              createIndexResponse();
-        }else if (new File(currentDirectory + request.getPath()).exists()) {
+        if (new File(currentDirectory + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
                 createImageResponse(reader);
@@ -31,15 +29,7 @@ public class GetHandler implements Handler {
             }else {
                  createTextFileResponse(reader);
             }
-        }else{
-            create404Response();
         }
-    }
-
-    private void create404Response() {
-        generator.setStatusLine("404");
-        generator.setHeaders();
-        generator.setBody("File not found".getBytes());
     }
 
     private void createTextFileResponse(FileReader reader) {
@@ -123,12 +113,5 @@ public class GetHandler implements Handler {
         }else if (isAPngFile()){
             typeOfImage = "image/png";
         }
-    }
-
-    private void createIndexResponse(){
-        String namesOfFiles = getDirectoryFileNames(currentDirectory, "/");
-        generator.setStatusLine("200");
-        generator.setHeaders("Content-Type: text/html");
-        generator.setBody(namesOfFiles.getBytes());
     }
 }

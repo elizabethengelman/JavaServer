@@ -23,8 +23,10 @@ public class DirectoryBuilder {
     public String getLinksOfFiles(){
         List<File> filesInDirectory = getFilesInCurrentDirectory();
         String filesAsList = "";
+
+        System.out.println("this is the path: " + path);
         for (File file: filesInDirectory){
-            if (path == "/"){
+            if (path.equals("/")){
                 filesAsList += "<a href=" + path + file.getName()+ ">" + file.getName() + "</a><br>";
             }else{
                 filesAsList += "<a href=" + path + "/" + file.getName()+ ">" + file.getName() + "</a><br>";

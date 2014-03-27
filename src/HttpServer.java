@@ -20,7 +20,7 @@ public class HttpServer {
             try {
                 request = new HttpRequest(connectedClient.getInputStream());
                 logRequest(request.requestString);
-                router = new RequestRouter(request);
+                router = new RequestRouter(request, mainDirectory);
                 handler = router.routeToHandler();
                 System.out.println("this is the handler the is in the server now: " + handler);
                 handler.createResponse(request, mainDirectory);
