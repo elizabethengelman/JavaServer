@@ -28,7 +28,7 @@ public class RequestRouter {
             handler = new OptionsHandler();
         }
         else{
-            handler = new GetHandler();
+            handler = new NotFoundHanlder();
         }
         return handler;
     }
