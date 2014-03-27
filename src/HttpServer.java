@@ -10,7 +10,6 @@ public class HttpServer {
         RequestRouter router;
         Handler handler;
 
-
         public ServerThread(Socket newConnection, String directory) {
             connectedClient = newConnection;
             mainDirectory = directory;
@@ -22,9 +21,7 @@ public class HttpServer {
                 logRequest(request.requestString);
                 router = new RequestRouter(request, mainDirectory);
                 handler = router.routeToHandler();
-                System.out.println("this is the handler the is in the server now: " + handler);
-                handler.createResponse(request, mainDirectory);
-                handler.sendResponse(connectedClient.getOutputStream());
+                handler.processResponse(request, mainDirectory, connectedClient.getOutputStream());
             } catch (IOException e) {
                 System.out.println(e);
             }

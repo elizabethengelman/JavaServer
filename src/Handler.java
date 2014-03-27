@@ -1,9 +1,10 @@
 import java.io.OutputStream;
+import java.util.Map;
 
 /**
  * Created by elizabethengelman on 3/20/14.
  */
 interface Handler {
-    public void createResponse(HttpRequest request, String currentDirectory);
-    public void sendResponse(OutputStream outputStream);
+    public void sendResponse(Map<String, byte[]> responsePieces);
+    public void processResponse(HttpRequest httpRequest, String directory, OutputStream outputStream);
 }

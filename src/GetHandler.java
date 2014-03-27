@@ -2,6 +2,8 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by elizabethengelman on 3/20/14.
@@ -9,17 +11,17 @@ import java.io.OutputStream;
 public class GetHandler implements Handler {
     HttpRequest request;
     ResponseGenerator generator;
-    String typeOfImage;
     String currentDirectory;
     String updatedDirectory;
+    OutputStream outputStream;
+    String typeOfImage;
 
     public GetHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse(HttpRequest httpRequest, String directory) {
-        request = httpRequest;
-        currentDirectory = directory;
+    public Map<String, byte[]> createResponse() {
+        Map<String, byte[]> responsePieces = new LinkedHashMap<String, byte[]>();
         if (new File(currentDirectory + request.getPath()).exists()) {
             FileReader reader = new FileReader();
             if (isAnImage()) {
@@ -30,6 +32,9 @@ public class GetHandler implements Handler {
                  createTextFileResponse(reader);
             }
         }
+        responsePieces.put("header", generator.fullHeader);
+        responsePieces.put("body", generator.body);
+        return responsePieces;
     }
 
     private void createTextFileResponse(FileReader reader) {
@@ -58,16 +63,22 @@ public class GetHandler implements Handler {
         return directoryBuilder.getLinksOfFiles();
     }
 
-    public void sendResponse(OutputStream outputStream) {
+    public void sendResponse(Map<String, byte[]> responsePieces) {
         try {
-            byte[] requestHeader = generator.fullHeader;
-            byte[] requestBody = generator.body;
             DataOutputStream dOut = new DataOutputStream(outputStream);
-            dOut.write(requestHeader);
-            dOut.write(requestBody);
+            dOut.write(responsePieces.get("header"));
+            dOut.write(responsePieces.get("body"));
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public void processResponse(HttpRequest httpRequest, String directory, OutputStream os){
+        request = httpRequest;
+        currentDirectory = directory;
+        outputStream = os;
+        Map<String, byte[]> responsePieces = createResponse();
+        sendResponse(responsePieces);
     }
 
     private Boolean isAGifFile() {

@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by elizabethengelman on 3/23/14.
@@ -7,14 +9,16 @@ public class DeleteHandler implements Handler {
 
     HttpRequest request;
     ResponseGenerator generator;
+    String currentDirectory;
+    OutputStream outputStream;
 
     public DeleteHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse(HttpRequest httpRequest, String currentDirectory) {
-        request = httpRequest;
+    public Map<String, byte[]> createResponse() {
         File file;
+        Map<String, byte[]> responsePieces = new LinkedHashMap<String, byte[]>();
         if ((file = new File(currentDirectory + request.getPath())).exists()) {
             generator.setStatusLine("200");
             generator.setHeaders("Content-Type: text/plain");
@@ -29,17 +33,26 @@ public class DeleteHandler implements Handler {
             generator.setStatusLine("404");
             generator.setBody();
         }
+        responsePieces.put("header", generator.fullHeader);
+        responsePieces.put("body", generator.body);
+        return responsePieces;
     }
 
-    public void sendResponse(OutputStream outputStream) {
+    public void sendResponse(Map<String, byte[]> responsePieces) {
         try {
-            byte[] requestHeader = generator.fullHeader;
-            byte[] requestBody = generator.body;
             DataOutputStream dOut = new DataOutputStream(outputStream);
-            dOut.write(requestHeader);
-            dOut.write(requestBody);
+            dOut.write(responsePieces.get("header"));
+            dOut.write(responsePieces.get("body"));
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public void processResponse(HttpRequest httpRequest, String directory, OutputStream os){
+        request = httpRequest;
+        currentDirectory = directory;
+        outputStream = os;
+        Map<String, byte[]> responsePieces = createResponse();
+        sendResponse(responsePieces);
     }
 }

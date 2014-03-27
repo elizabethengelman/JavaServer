@@ -2,6 +2,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by elizabethengelman on 3/27/14.
@@ -9,30 +11,40 @@ import java.util.Date;
 public class PartialContentHandler implements Handler{
     HttpRequest request;
     ResponseGenerator generator;
-    FileReader reader = new FileReader();
+    OutputStream outputStream;
     String currentDirectory;
+    FileReader reader = new FileReader();
 
     public PartialContentHandler(){
         generator = new ResponseGenerator();
     }
 
-    public void createResponse(HttpRequest httpRequest, String directory) {
-        request = httpRequest;
-        currentDirectory = directory;
+    public Map<String, byte[]> createResponse() {
         createPartialContentResponse(reader);
+        Map<String, byte[]> responsePieces = new LinkedHashMap<String, byte[]>();
+        responsePieces.put("header", generator.fullHeader);
+        responsePieces.put("body", generator.body);
+        return responsePieces;
     }
 
-    public void sendResponse(OutputStream outputStream) {
+    public void sendResponse(Map<String, byte[]> responsePieces) {
         try {
-            byte[] requestHeader = generator.fullHeader;
-            byte[] requestBody = generator.body;
             DataOutputStream dOut = new DataOutputStream(outputStream);
-            dOut.write(requestHeader);
-            dOut.write(requestBody);
+            dOut.write(responsePieces.get("header"));
+            dOut.write(responsePieces.get("body"));
         } catch (IOException e) {
             System.out.println(e);
         }
     }
+
+    public void processResponse(HttpRequest httpRequest, String directory, OutputStream os){
+        request = httpRequest;
+        currentDirectory = directory;
+        outputStream = os;
+        Map<String, byte[]> responsePieces = createResponse();
+        sendResponse(responsePieces);
+    }
+
 
     private void createPartialContentResponse(FileReader reader) {
         byte[] file = reader.readFile(currentDirectory + request.getPath());
