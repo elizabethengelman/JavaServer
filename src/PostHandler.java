@@ -13,10 +13,7 @@ public class PostHandler implements Handler{
 
     public void createResponse(HttpRequest httpRequest, String currentDirectory) {
         request = httpRequest;
-        if (request.getPath().equals("/")) {
-            generator.setStatusLine("200");
-            generator.setBody();
-        }else if(request.getPath().equals("/form")){
+        if(request.getPath().equals("/form")){
             generator.setStatusLine("200");
             generator.setHeaders("Content-Type: text/plain");
             generator.setBody();

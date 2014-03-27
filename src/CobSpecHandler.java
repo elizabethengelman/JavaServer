@@ -33,6 +33,7 @@ public class CobSpecHandler implements Handler {
                 createPartialContentResponse(reader);
             }
         }else if(request.getPath().equals("/method_options")){
+            System.out.println("it's here");
             createMethodOptionsResponse();
         }else if(request.getPath().contains("/parameters")){
             createParameterResponse();
