@@ -20,6 +20,7 @@ public class RedirectHandler implements Handler{
     public Map<String, byte[]> createResponse() {
         generator.setStatusLine("307");
         generator.setHeaders("Location: http://localhost:5000/");
+        generator.setBody("".getBytes());
         System.out.println(generator.fullHeader);
         request.setPath("/");
         Map<String, byte[]> responsePieces = new LinkedHashMap<String, byte[]>();

@@ -67,7 +67,30 @@
       <file leaf-file-name="GetHandlerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tests/GetHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="84" selection-start="0" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="660">
+            <state line="20" column="84" selection-start="0" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="660">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RedirectHandlerTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tests/RedirectHandlerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="872" selection-end="872" vertical-scroll-proportion="0.346247" vertical-offset="277" max-vertical-offset="690">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RedirectHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RedirectHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="39" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="825">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,10 +160,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthenticatedHandler.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AuthenticatedHandler.java">
+      <file leaf-file-name="AuthenticatedHandlerTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/AuthenticatedHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="935" selection-end="935" vertical-scroll-proportion="0.66109425" vertical-offset="0" max-vertical-offset="930">
+            <state line="48" column="0" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="870">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -194,8 +217,6 @@
         <option value="$PROJECT_DIR$/src/HttpServer.java" />
         <option value="$PROJECT_DIR$/src/GetHandler.java" />
         <option value="$PROJECT_DIR$/src/IndexHandler.java" />
-        <option value="$PROJECT_DIR$/src/RedirectHandler.java" />
-        <option value="$PROJECT_DIR$/Tests/RedirectHandlerTest.java" />
         <option value="$PROJECT_DIR$/src/ParametersHandler.java" />
         <option value="$PROJECT_DIR$/src/RequestRouter.java" />
         <option value="$PROJECT_DIR$/Tests/PartialContentHandlerTest.java" />
@@ -209,6 +230,8 @@
         <option value="$PROJECT_DIR$/Tests/DeleteHandlerTest.java" />
         <option value="$PROJECT_DIR$/src/AuthenticatedHandler.java" />
         <option value="$PROJECT_DIR$/Tests/AuthenticatedHandlerTest.java" />
+        <option value="$PROJECT_DIR$/src/RedirectHandler.java" />
+        <option value="$PROJECT_DIR$/Tests/RedirectHandlerTest.java" />
       </list>
     </option>
   </component>
@@ -332,29 +355,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AuthenticatedHandlerTest.testCreateResponseForAuth">
-    <configuration default="false" name="NotFoundHandlerTest.testCreateResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JavaServer" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="NotFoundHandlerTest" />
-      <option name="METHOD_NAME" value="testCreateResponse" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.RedirectHandlerTest">
     <configuration default="false" name="OptionsHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaServer" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -429,6 +430,28 @@
       <option name="MAIN_CLASS_NAME" value="AuthenticatedHandlerTest" />
       <option name="METHOD_NAME" value="testCreateResponseForAuth" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="RedirectHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JavaServer" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RedirectHandlerTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -571,19 +594,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.NotFoundHandlerTest.testCreateResponse" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.OptionsHandlerTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.DeleteHandlerTest.testCreateResponse" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest.testCreateResponseForAuth" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.OptionsHandlerTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.DeleteHandlerTest.testCreateResponse" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest.testCreateResponseForAuth" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.RedirectHandlerTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest.testCreateResponseForAuth" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.DeleteHandlerTest.testCreateResponse" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.OptionsHandlerTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.NotFoundHandlerTest.testCreateResponse" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.RedirectHandlerTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest.testCreateResponseForAuth" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.AuthenticatedHandlerTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.DeleteHandlerTest.testCreateResponse" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.OptionsHandlerTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -637,8 +660,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3570248" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2947814" sideWeight="0.87695926" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3570248" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2947814" sideWeight="0.87695926" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -868,22 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RedirectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="27" selection-start="904" selection-end="904" vertical-scroll-proportion="0.36009175" vertical-offset="248" max-vertical-offset="810">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/RedirectHandlerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.095338985" vertical-offset="0" max-vertical-offset="472">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="13" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="945">
@@ -999,27 +1006,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/AuthenticatedHandlerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.6880734" vertical-offset="420" max-vertical-offset="870">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tests/OptionsHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="40" selection-start="0" selection-end="1211" vertical-scroll-proportion="0.6736527" vertical-offset="0" max-vertical-offset="668">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/GetHandlerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="84" selection-start="0" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="660">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1067,6 +1056,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/GetHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="84" selection-start="0" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="660">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/AuthenticatedHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="870">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AuthenticatedHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="28" selection-start="339" selection-end="339" vertical-scroll-proportion="-0.52816904" vertical-offset="420" max-vertical-offset="930">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="30" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
@@ -1076,10 +1092,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AuthenticatedHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/RedirectHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="935" selection-end="935" vertical-scroll-proportion="0.66109425" vertical-offset="0" max-vertical-offset="930">
+        <state line="22" column="39" selection-start="642" selection-end="642" vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="825">
           <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/RedirectHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="872" selection-end="872" vertical-scroll-proportion="0.346247" vertical-offset="277" max-vertical-offset="690">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
