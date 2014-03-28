@@ -43,7 +43,6 @@ public class ParametersHandler implements Handler {
         outputStream = os;
         Map<String, byte[]> responsePieces = createResponse();
         sendResponse(responsePieces);
-        System.out.println("testtestttes");
     }
 
 

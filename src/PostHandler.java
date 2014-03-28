@@ -22,7 +22,6 @@ public class PostHandler implements Handler{
             generator.setBody();
             FileWriter fileWriter = new FileWriter();
             String reformatedContent = fileWriter.formatFileBody(request.requestBody);
-            System.out.println(reformatedContent);
             fileWriter.writeToFile(currentDirectory + request.getPath(), reformatedContent);
         }else{
             generator.setStatusLine("405");

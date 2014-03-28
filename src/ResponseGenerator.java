@@ -19,9 +19,7 @@ public class ResponseGenerator {
         statusCodes.put("307", "307 Temporary Redirect");
         statusCodes.put("405", "405 Method Not Allowed");
         statusCodes.put("401", "401 Unauthorized");
-
         statusLine = "HTTP/1.1 " + statusCodes.get(code) + "\r\n";
-        System.out.println(statusLine);
     }
 
     public void setHeaders(String... newHeaders){
@@ -30,9 +28,7 @@ public class ResponseGenerator {
             h.append(header + "\n");
         }
         headers = h + "\r\n";
-//        fullHeader = ("HTTP/1.1 200 OK\r\nContent-Type: image/png" + "\n\r\n").getBytes();
         fullHeader = (statusLine + headers).getBytes();
-        System.out.println(statusLine + headers);
     }
 
     public void setBody(){ //if there is no body

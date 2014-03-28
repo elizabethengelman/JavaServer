@@ -31,7 +31,6 @@ public class HttpServer {
                     connectedClient.close();
                 } catch (IOException e) {
                     System.out.println(e);
-                    System.out.println("this is from the thread");
                 }
             }
         }

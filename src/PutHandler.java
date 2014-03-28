@@ -22,7 +22,6 @@ public class PutHandler implements Handler {
             generator.setBody();
                 FileWriter fileWriter = new FileWriter();
                 String reformatedContent = fileWriter.formatFileBody(request.requestBody);
-                System.out.println("reformated code"+ reformatedContent);
                 fileWriter.writeToFile(currentDirectory + request.getPath(), reformatedContent);
         }else {
             generator.setStatusLine("405");

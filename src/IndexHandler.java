@@ -21,7 +21,6 @@ public class IndexHandler implements Handler{
         currentDirectory = directory;
         outputStream = os;
         Map<String, byte[]> responsePieces = createResponse();
-        System.out.println(responsePieces);
         sendResponse(responsePieces);
     }
 
