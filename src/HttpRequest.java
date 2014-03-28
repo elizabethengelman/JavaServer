@@ -31,12 +31,17 @@ public class HttpRequest {
                 charArray = new char[getContentLength()];
                 inputFromClient.read(charArray, 0, charArray.length);
                 requestBody = new String(charArray);
+                formatRequestBody();
                 System.out.println(requestBody);
             }
         }
         catch(IOException e){
             System.out.println(e);
         }
+    }
+
+    private boolean isEndOfHeader(String newRequestString) {
+        return newRequestString == null || newRequestString.equals("");
     }
 
     private boolean hasContentLength(){
@@ -49,8 +54,10 @@ public class HttpRequest {
         return contentLength;
     }
 
-    private boolean isEndOfHeader(String newRequestString) {
-        return newRequestString == null || newRequestString.equals("");
+
+    private void formatRequestBody(){
+        String[] requestBodyPieces = requestBody.split("=");
+        requestBody = requestBodyPieces[0] + " = " + requestBodyPieces[1];
     }
 
     public String getMethod(){

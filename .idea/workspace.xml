@@ -63,79 +63,109 @@
     <favorites_list name="JavaServer" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="RequestRouter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="13" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="945">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PutHandler.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="71" selection-start="898" selection-end="898" vertical-scroll-proportion="0.4472477" vertical-offset="225" max-vertical-offset="975">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestLogger.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RequestLogger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetHandlerTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Tests/GetHandlerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="35" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="660">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="33" selection-start="1241" selection-end="1241" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1020">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpServer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="17" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="975">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="48" selection-start="1174" selection-end="1174" vertical-scroll-proportion="-4.1666665" vertical-offset="165" max-vertical-offset="2025">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="RequestRouter.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="41" column="13" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="945">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PutHandler.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="35" column="47" selection-start="1124" selection-end="1124" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="975">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RequestLogger.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/RequestLogger.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="6" column="13" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="GetHandlerTest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Tests/GetHandlerTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="21" column="35" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="660">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DeleteHandler.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/DeleteHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="39" column="30" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.7912844" vertical-offset="240" max-vertical-offset="990">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PostHandler.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="36" column="33" selection-start="1241" selection-end="1241" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1020">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HttpServer.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/HttpServer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="34" column="17" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="975">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="26" column="17" selection-start="892" selection-end="892" vertical-scroll-proportion="-4.0185184" vertical-offset="68" max-vertical-offset="2130">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="PutHandler.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="25" column="31" selection-start="609" selection-end="778" vertical-scroll-proportion="0.52287585" vertical-offset="135" max-vertical-offset="975">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -167,7 +197,6 @@
         <option value="$PROJECT_DIR$/src/CobSpecHandler.java" />
         <option value="$PROJECT_DIR$/src/DirectoryBuilder.java" />
         <option value="$PROJECT_DIR$/Tests/DirectoryBuilderTest.java" />
-        <option value="$PROJECT_DIR$/src/DeleteHandler.java" />
         <option value="$PROJECT_DIR$/src/MethodOptionsHandler.java" />
         <option value="$PROJECT_DIR$/src/NotFoundHandler.java" />
         <option value="$PROJECT_DIR$/src/OptionsHandler.java" />
@@ -194,14 +223,15 @@
         <option value="$PROJECT_DIR$/src/ResponseGenerator.java" />
         <option value="$PROJECT_DIR$/Tests/ResponseGeneratorTest.java" />
         <option value="$PROJECT_DIR$/src/PostHandler.java" />
-        <option value="$PROJECT_DIR$/src/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/PutHandler.java" />
+        <option value="$PROJECT_DIR$/src/HttpRequest.java" />
+        <option value="$PROJECT_DIR$/src/DeleteHandler.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="637" />
+    <option name="width" value="1276" />
     <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -599,7 +629,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="637" height="778" extended-state="6" />
+    <frame x="0" y="22" width="1276" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -618,7 +648,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.01255887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0062695923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2947814" sideWeight="0.87695926" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -967,15 +997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DeleteHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="5" selection-start="0" selection-end="1818" vertical-scroll-proportion="0.0" vertical-offset="337" max-vertical-offset="960">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Authenticator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="13" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
@@ -1024,13 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="13" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="945">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RequestLogger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="13" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
@@ -1047,13 +1061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="48" selection-start="1174" selection-end="1174" vertical-scroll-proportion="-4.1666665" vertical-offset="165" max-vertical-offset="2025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PostHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="33" selection-start="1241" selection-end="1241" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1020">
@@ -1063,9 +1070,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/RequestRouter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="13" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="17" selection-start="892" selection-end="892" vertical-scroll-proportion="-4.0185184" vertical-offset="68" max-vertical-offset="2130">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PutHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="71" selection-start="898" selection-end="898" vertical-scroll-proportion="0.4472477" vertical-offset="225" max-vertical-offset="975">
+        <state line="35" column="47" selection-start="1124" selection-end="1124" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="975">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DeleteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="30" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.7912844" vertical-offset="240" max-vertical-offset="990">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

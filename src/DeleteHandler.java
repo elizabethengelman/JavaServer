@@ -24,7 +24,9 @@ public class DeleteHandler implements Handler {
             generator.setHeaders("Content-Type: text/plain");
             generator.setBody();
             try{
-                file.delete();
+                PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
+                writer.println("");
+                writer.close();
             }
             catch(Exception e){
                 System.out.println("The file writing exception: " + e);
