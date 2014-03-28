@@ -20,15 +20,10 @@ public class PostHandler implements Handler{
             generator.setStatusLine("200");
             generator.setHeaders("Content-Type: text/plain");
             generator.setBody();
-            try{
-                PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
-                System.out.println("This is the request body that we're POSTING" + request.requestBody);
-                writer.println(request.requestBody);
-                writer.close();
-            }
-            catch(IOException e){
-                System.out.println("The file writing exception: " + e);
-            }
+            FileWriter fileWriter = new FileWriter();
+            String reformatedContent = fileWriter.formatFileBody(request.requestBody);
+            System.out.println(reformatedContent);
+            fileWriter.writeToFile(currentDirectory + request.getPath(), reformatedContent);
         }else{
             generator.setStatusLine("405");
             generator.setHeaders("Content-Type: text/html");

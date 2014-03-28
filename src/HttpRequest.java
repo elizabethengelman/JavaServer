@@ -31,8 +31,6 @@ public class HttpRequest {
                 charArray = new char[getContentLength()];
                 inputFromClient.read(charArray, 0, charArray.length);
                 requestBody = new String(charArray);
-                formatRequestBody();
-                System.out.println(requestBody);
             }
         }
         catch(IOException e){

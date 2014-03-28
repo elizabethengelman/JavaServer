@@ -20,14 +20,10 @@ public class PutHandler implements Handler {
             generator.setStatusLine("200");
             generator.setHeaders();
             generator.setBody();
-            try{
-                PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
-                writer.println(request.requestBody);
-                writer.close();
-            }
-            catch(IOException e){
-                System.out.println("The file writing exception: " + e);
-            }
+                FileWriter fileWriter = new FileWriter();
+                String reformatedContent = fileWriter.formatFileBody(request.requestBody);
+                System.out.println("reformated code"+ reformatedContent);
+                fileWriter.writeToFile(currentDirectory + request.getPath(), reformatedContent);
         }else {
             generator.setStatusLine("405");
             generator.setHeaders("Content-Type: text/html");
