@@ -22,7 +22,7 @@ public class PutHandler implements Handler {
             generator.setBody();
             try{
                 PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
-                writer.println("data = heathcliff");
+                writer.println(request.requestBody);
                 writer.close();
             }
             catch(IOException e){

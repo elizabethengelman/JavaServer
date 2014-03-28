@@ -22,7 +22,8 @@ public class PostHandler implements Handler{
             generator.setBody();
             try{
                 PrintWriter writer = new PrintWriter(currentDirectory + request.getPath(), "UTF-8");
-                writer.println("data = cosby");
+                System.out.println("This is the request body that we're POSTING" + request.requestBody);
+                writer.println(request.requestBody);
                 writer.close();
             }
             catch(IOException e){

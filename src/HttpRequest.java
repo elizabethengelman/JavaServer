@@ -11,6 +11,9 @@ public class HttpRequest {
     InputStream inputStream;
     BufferedReader inputFromClient;
     String requestString = "";
+    String requestBody="";
+    char[] charArray;
+
 
     public HttpRequest(InputStream is){
         inputStream = is;
@@ -18,17 +21,17 @@ public class HttpRequest {
         try{
             String newRequestString = inputFromClient.readLine();
             requestString += newRequestString;
-            System.out.println("First request string: " + requestString);
-
             while (!isEndOfHeader(newRequestString)){
                 if ((newRequestString = inputFromClient.readLine()) != null){
                     requestString += newRequestString;
                 }
+
             }
-            System.out.println("THE REQUEST STRING" + requestString);
-            System.out.println("this req has content lenght" + hasContentLength());
             if (hasContentLength()){
-                readAdditionalBytes();
+                charArray = new char[getContentLength()];
+                inputFromClient.read(charArray, 0, charArray.length);
+                requestBody = new String(charArray);
+                System.out.println(requestBody);
             }
         }
         catch(IOException e){
@@ -40,13 +43,14 @@ public class HttpRequest {
         return requestString.contains("Content-Length");
     }
 
-    private void readAdditionalBytes(){
+    private int getContentLength(){
         String sub = requestString.substring(requestString.indexOf("Content-Length"), requestString.indexOf("Content-Type"));
         int contentLength = Integer.parseInt(sub.substring(sub.indexOf(":") + 2));
-        String s = inputFromClient.red 
+        return contentLength;
     }
+
     private boolean isEndOfHeader(String newRequestString) {
-        return newRequestString == null || newRequestString.equals("") || newRequestString.contains("\r\n");
+        return newRequestString == null || newRequestString.equals("");
     }
 
     public String getMethod(){
